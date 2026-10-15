@@ -23,26 +23,6 @@
                         teal: { 600: '#1D5D72', 700: '#164858' },
                         gold: { 500: '#C5A059', 600: '#B28E46' },
                         warmbg: '#F8FAFC',
-                        cardbg: '#FFFFFF'
-                    },
-                    keyframes: {
-                        floatY: {
-                            '0%,100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' }
-                        },
-                        pulseSoft: {
-                            '0%,100%': { transform: 'scale(1)', opacity: '1' },
-                            '50%': { transform: 'scale(1.06)', opacity: '0.85' }
-                        },
-                        shimmer: {
-                            '0%': { backgroundPosition: '-200% 0' },
-                            '100%': { backgroundPosition: '200% 0' }
-                        }
-                    },
-                    animation: {
-                        'float-y': 'floatY 6s ease-in-out infinite',
-                        'pulse-soft': 'pulseSoft 3s ease-in-out infinite',
-                        'shimmer': 'shimmer 6s linear infinite',
                     }
                 }
             }
@@ -51,250 +31,239 @@
 
     <style>
         :root {
-            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-            --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+            --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Noto Sans', sans-serif;
-            background-color: #F8FAFC;
+            background-color: #FFFFFF;
             color: #334155;
             overflow-x: hidden;
         }
-        h1, h2, h3, h4, h5, .font-serif-custom {
+
+        h1, h2, h3, h4, h5 {
             font-family: 'Noto Serif Display', serif;
-            letter-spacing: -0.01em;
+            letter-spacing: -0.005em;
         }
 
-        /* ============== SCROLL REVEAL ============== */
+        /* ============================================
+           REVEAL — μόνο fade + απαλό slide. Διακριτικό.
+           ============================================ */
         .reveal {
             opacity: 0;
-            transform: translate3d(0, 32px, 0);
-            transition: opacity 0.9s var(--ease-out-expo), transform 0.9s var(--ease-out-expo);
+            transform: translate3d(0, 20px, 0);
+            transition: opacity 0.85s var(--ease-smooth), transform 0.85s var(--ease-smooth);
             will-change: opacity, transform;
         }
-        .reveal.is-visible { opacity: 1; transform: translate3d(0, 0, 0); }
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
 
-        .reveal-left  { transform: translate3d(-40px, 0, 0); }
-        .reveal-right { transform: translate3d(40px, 0, 0); }
-        .reveal-scale { transform: scale(0.94); }
-        .reveal-left.is-visible,
-        .reveal-right.is-visible,
-        .reveal-scale.is-visible { transform: translate3d(0,0,0); }
+        .stagger > * {
+            opacity: 0;
+            transform: translate3d(0, 16px, 0);
+            transition: opacity 0.7s var(--ease-smooth), transform 0.7s var(--ease-smooth);
+        }
+        .stagger.is-visible > * { opacity: 1; transform: translate3d(0, 0, 0); }
+        .stagger.is-visible > *:nth-child(1) { transition-delay: 0.05s; }
+        .stagger.is-visible > *:nth-child(2) { transition-delay: 0.13s; }
+        .stagger.is-visible > *:nth-child(3) { transition-delay: 0.21s; }
+        .stagger.is-visible > *:nth-child(4) { transition-delay: 0.29s; }
+        .stagger.is-visible > *:nth-child(5) { transition-delay: 0.37s; }
+        .stagger.is-visible > *:nth-child(6) { transition-delay: 0.45s; }
 
-        /* Stagger */
-        .stagger > * { opacity: 0; transform: translate3d(0, 28px, 0); transition: opacity .8s var(--ease-out-expo), transform .8s var(--ease-out-expo); }
-        .stagger.is-visible > * { opacity: 1; transform: translate3d(0,0,0); }
-        .stagger.is-visible > *:nth-child(1) { transition-delay: .05s; }
-        .stagger.is-visible > *:nth-child(2) { transition-delay: .15s; }
-        .stagger.is-visible > *:nth-child(3) { transition-delay: .25s; }
-        .stagger.is-visible > *:nth-child(4) { transition-delay: .35s; }
-        .stagger.is-visible > *:nth-child(5) { transition-delay: .45s; }
-        .stagger.is-visible > *:nth-child(6) { transition-delay: .55s; }
-
-        /* ============== BUTTONS (Luxury) ============== */
+        /* ============================================
+           BUTTONS — κλασικά, σταθερά, χωρίς εφέ
+           ============================================ */
         .btn {
-            position: relative;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
             font-family: 'Noto Sans', sans-serif;
             font-weight: 500;
-            letter-spacing: 0.03em;
-            border-radius: 8px;
-            transition: transform 0.45s var(--ease-out-expo),
-                        box-shadow 0.45s var(--ease-out-expo),
-                        background-color 0.35s ease,
-                        color 0.35s ease,
-                        border-color 0.35s ease;
-            will-change: transform;
-            isolation: isolate;
+            letter-spacing: 0.02em;
+            border-radius: 4px;
+            transition: background-color 0.25s var(--ease-soft),
+                        border-color 0.25s var(--ease-soft),
+                        color 0.25s var(--ease-soft),
+                        box-shadow 0.25s var(--ease-soft),
+                        transform 0.25s var(--ease-soft);
+            cursor: pointer;
+            white-space: nowrap;
         }
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -130%;
-            width: 55%; height: 100%;
-            background: linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.45) 50%, transparent 100%);
-            transform: skewX(-22deg);
-            transition: left 0.85s var(--ease-out-expo);
-            pointer-events: none;
-            z-index: 2;
-        }
-        .btn:hover::before { left: 140%; }
-        .btn:hover { transform: translateY(-3px); }
-        .btn:active { transform: translateY(-1px) scale(0.99); }
 
-        .btn > * { position: relative; z-index: 1; }
-
-        /* Navy */
         .btn-navy {
-            background: linear-gradient(135deg, #153250 0%, #0F2B48 100%);
-            color: #fff;
+            background-color: #0F2B48;
+            color: #FFFFFF;
             border: 1px solid #0F2B48;
-            box-shadow: 0 4px 12px -4px rgba(15, 43, 72, 0.35), 0 2px 4px rgba(15,43,72,0.08);
+            box-shadow: 0 1px 2px rgba(15, 43, 72, 0.08);
         }
         .btn-navy:hover {
-            background: linear-gradient(135deg, #1a3d61 0%, #153250 100%);
-            box-shadow: 0 18px 34px -10px rgba(15, 43, 72, 0.5), 0 6px 12px rgba(15,43,72,0.15);
+            background-color: #153250;
+            border-color: #153250;
+            box-shadow: 0 4px 12px rgba(15, 43, 72, 0.15);
+            transform: translateY(-1px);
         }
+        .btn-navy:active { transform: translateY(0); }
 
-        /* Gold */
         .btn-gold {
-            background: linear-gradient(135deg, #D4B36B 0%, #C5A059 50%, #B28E46 100%);
-            color: #fff;
+            background-color: #C5A059;
+            color: #FFFFFF;
             border: 1px solid #C5A059;
-            box-shadow: 0 4px 14px -4px rgba(197, 160, 89, 0.5), 0 2px 6px rgba(197,160,89,0.15);
+            box-shadow: 0 1px 2px rgba(197, 160, 89, 0.15);
         }
         .btn-gold:hover {
-            background: linear-gradient(135deg, #DDBE7A 0%, #C9A65E 50%, #B89551 100%);
-            box-shadow: 0 18px 36px -10px rgba(197, 160, 89, 0.6), 0 6px 14px rgba(197,160,89,0.2);
+            background-color: #B28E46;
+            border-color: #B28E46;
+            box-shadow: 0 4px 12px rgba(197, 160, 89, 0.22);
+            transform: translateY(-1px);
         }
+        .btn-gold:active { transform: translateY(0); }
 
-        /* Outline */
         .btn-outline {
-            background: rgba(255,255,255,0.6);
-            backdrop-filter: blur(6px);
+            background-color: transparent;
             color: #0F2B48;
-            border: 1.5px solid #0F2B48;
+            border: 1px solid #0F2B48;
         }
         .btn-outline:hover {
-            background: #0F2B48;
-            color: #fff;
-            box-shadow: 0 14px 30px -10px rgba(15,43,72,0.4);
+            background-color: #0F2B48;
+            color: #FFFFFF;
+            transform: translateY(-1px);
         }
+        .btn-outline:active { transform: translateY(0); }
 
-        /* ============== DECORATIVE ============== */
-        .gold-divider {
-            width: 64px; height: 2px;
-            background: linear-gradient(90deg, transparent, #C5A059, transparent);
-            margin: 1rem auto 0;
+        /* ============================================
+           DECORATIVE
+           ============================================ */
+        .gold-line {
+            width: 48px;
+            height: 1px;
+            background: #C5A059;
+            margin: 1.15rem auto 0;
         }
-        .gold-divider.left { margin-left: 0; }
+        .gold-line.left { margin-left: 0; }
 
-        /* Floating badge */
-        .float-badge {
-            animation: floatY 6s ease-in-out infinite;
-            will-change: transform;
-        }
-        .float-badge.delay-1 { animation-delay: 0.8s; }
-        .float-badge.delay-2 { animation-delay: 1.6s; }
-
-        /* Hero image frame */
-        .hero-img-wrap {
-            position: relative;
-            border-radius: 18px;
-            overflow: hidden;
-            box-shadow: 0 30px 60px -30px rgba(15, 43, 72, 0.5), 0 12px 30px -10px rgba(15,43,72,0.18);
-            transform: translateZ(0);
-        }
-        .hero-img-wrap::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, transparent 55%, rgba(15,43,72,0.35) 100%);
-            pointer-events: none;
-        }
-        .hero-img-wrap img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 1.2s var(--ease-out-expo);
-        }
-        .hero-img-wrap:hover img { transform: scale(1.04); }
-
-        /* Nav underline */
+        /* Nav links — απλό underline */
         .nav-link {
             position: relative;
-            padding-bottom: 4px;
+            padding: 6px 0;
+            transition: color 0.2s var(--ease-soft);
         }
         .nav-link::after {
             content: '';
             position: absolute;
             left: 0; bottom: 0;
-            height: 2px; width: 0%;
+            height: 1px;
+            width: 0;
             background: #C5A059;
-            transition: width 0.4s var(--ease-out-expo);
+            transition: width 0.3s var(--ease-soft);
         }
         .nav-link:hover::after { width: 100%; }
 
-        /* Service card */
-        .service-card {
-            transition: transform 0.5s var(--ease-out-expo), box-shadow 0.5s var(--ease-out-expo), border-color 0.3s ease;
-            will-change: transform;
-        }
-        .service-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 24px 40px -20px rgba(15,43,72,0.25), 0 8px 16px -8px rgba(15,43,72,0.12);
-            border-color: #153250;
-        }
-        .service-card .icon-box {
-            transition: transform 0.5s var(--ease-out-back), background 0.4s ease, color 0.4s ease;
-        }
-        .service-card:hover .icon-box {
-            transform: scale(1.08) rotate(-4deg);
-            background: #C5A059;
-            color: #fff;
-        }
-
-        /* Tech image cards */
-        .tech-card {
+        /* Hero image — clean frame, όχι glow */
+        .hero-portrait {
             position: relative;
+            border-radius: 6px;
             overflow: hidden;
-            border-radius: 14px;
-            box-shadow: 0 20px 40px -22px rgba(15,43,72,0.4);
+            box-shadow:
+                0 2px 4px rgba(15, 43, 72, 0.06),
+                0 20px 40px -20px rgba(15, 43, 72, 0.35);
         }
-        .tech-card img {
-            transition: transform 1.2s var(--ease-out-expo), filter 0.6s ease;
-            width: 100%; height: 100%;
+        .hero-portrait img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
             display: block;
         }
-        .tech-card:hover img { transform: scale(1.07); }
+
+        /* Info badge πάνω στην εικόνα — στατικό, διακριτικό */
+        .portrait-badge {
+            position: absolute;
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 4px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 8px 20px -10px rgba(15, 43, 72, 0.25);
+        }
+        .portrait-badge.badge-tl { top: 18px; left: -14px; }
+        .portrait-badge.badge-br { bottom: 18px; right: -14px; }
+        @media (max-width: 640px) {
+            .portrait-badge.badge-tl { left: 8px; }
+            .portrait-badge.badge-br { right: 8px; }
+        }
+
+        /* Service cards — μόνο border + απαλή σκιά στο hover */
+        .service-card {
+            transition: border-color 0.3s var(--ease-soft),
+                        box-shadow 0.3s var(--ease-soft),
+                        transform 0.3s var(--ease-soft);
+        }
+        .service-card:hover {
+            border-color: #CBD5E1;
+            box-shadow: 0 10px 30px -14px rgba(15, 43, 72, 0.18);
+            transform: translateY(-2px);
+        }
+
+        /* Tech cards — subtle */
+        .tech-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06), 0 16px 32px -20px rgba(15, 43, 72, 0.5);
+        }
+        .tech-card img {
+            width: 100%; height: 100%;
+            object-fit: cover; display: block;
+            transition: transform 1s var(--ease-soft);
+        }
+        .tech-card:hover img { transform: scale(1.03); }
         .tech-card::after {
             content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, rgba(10,28,48,0.05) 0%, rgba(10,28,48,0.85) 100%);
+            position: absolute; inset: 0;
+            background: linear-gradient(180deg, rgba(10,28,48,0) 40%, rgba(10,28,48,0.82) 100%);
         }
         .tech-card .tech-content {
             position: absolute;
             bottom: 0; left: 0; right: 0;
             padding: 1.5rem;
-            color: #fff;
+            color: #FFFFFF;
             z-index: 2;
         }
 
-        /* Hero background */
-        .hero-bg {
-            position: absolute;
-            inset: 0;
-            background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=2000&q=80');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.05;
-            filter: grayscale(20%);
-            pointer-events: none;
-            z-index: 0;
+        /* Review cards */
+        .review-card {
+            transition: border-color 0.3s var(--ease-soft), box-shadow 0.3s var(--ease-soft);
         }
-        .hero-bg::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, #F8FAFC 0%, rgba(248,250,252,0.7) 40%, #F8FAFC 100%);
+        .review-card:hover {
+            border-color: #C5A059;
+            box-shadow: 0 10px 28px -16px rgba(197, 160, 89, 0.35);
+        }
+
+        /* Cert cards */
+        .cert-card {
+            transition: border-color 0.3s var(--ease-soft), background-color 0.3s var(--ease-soft);
+        }
+        .cert-card:hover {
+            border-color: #C5A059;
+            background-color: #153250;
         }
 
         /* Scroll progress */
         #scroll-progress {
             position: fixed;
             top: 0; left: 0;
-            height: 3px;
-            width: 0%;
-            background: linear-gradient(90deg, #C5A059, #D4B36B, #C5A059);
+            height: 2px;
+            width: 0;
+            background: #C5A059;
             z-index: 100;
-            transition: width 0.1s linear;
+            transition: width 0.08s linear;
             will-change: width;
         }
 
@@ -302,123 +271,101 @@
         #back-top {
             position: fixed;
             bottom: 24px; right: 24px;
-            width: 48px; height: 48px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #153250, #0F2B48);
-            color: #C5A059;
+            width: 44px; height: 44px;
+            border-radius: 4px;
+            background: #0F2B48;
+            color: #FFFFFF;
             display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 10px 25px -8px rgba(15,43,72,0.6);
-            opacity: 0; visibility: hidden;
-            transform: translateY(20px);
-            transition: opacity 0.4s ease, transform 0.4s var(--ease-out-expo), visibility 0.4s;
+            border: 1px solid #0F2B48;
+            box-shadow: 0 4px 12px rgba(15, 43, 72, 0.18);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity 0.3s var(--ease-soft),
+                        transform 0.3s var(--ease-soft),
+                        visibility 0.3s,
+                        background-color 0.2s;
             z-index: 90;
             cursor: pointer;
         }
         #back-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
-        #back-top:hover { transform: translateY(-3px) scale(1.06); }
+        #back-top:hover { background: #153250; }
 
-        /* Review card hover */
-        .review-card {
-            transition: transform 0.5s var(--ease-out-expo), box-shadow 0.5s var(--ease-out-expo), border-color 0.3s ease;
-        }
-        .review-card:hover {
-            transform: translateY(-5px);
-            border-color: #C5A059;
-            box-shadow: 0 22px 40px -22px rgba(197,160,89,0.4);
-        }
-
-        /* Certification card */
-        .cert-card {
-            transition: transform 0.5s var(--ease-out-expo), background 0.4s ease, border-color 0.4s ease;
-        }
-        .cert-card:hover {
-            transform: translateY(-6px);
-            background: #153250;
-            border-color: #C5A059;
-        }
-        .cert-card .cert-icon {
-            transition: transform 0.6s var(--ease-out-back), color 0.4s ease;
-        }
-        .cert-card:hover .cert-icon { transform: scale(1.15) rotate(-6deg); }
-
-        /* Reduced motion */
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
                 animation-duration: 0.01ms !important;
                 transition-duration: 0.01ms !important;
             }
-            .reveal { opacity: 1 !important; transform: none !important; }
+            .reveal, .stagger > * { opacity: 1 !important; transform: none !important; }
         }
     </style>
 </head>
 <body class="antialiased selection:bg-navy-900 selection:text-white">
 
-    <!-- Scroll Progress -->
     <div id="scroll-progress"></div>
 
-    <!-- Top Announcement Bar -->
-    <div class="bg-navy-950 text-slate-200 py-2.5 text-xs md:text-sm border-b border-navy-900 relative z-40">
+    <!-- Top Bar -->
+    <div class="bg-navy-950 text-slate-300 py-2.5 text-xs md:text-sm border-b border-navy-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center space-y-1.5 sm:space-y-0">
             <div class="flex flex-wrap items-center justify-center sm:justify-start gap-4">
-                <span><i class="fa-solid fa-location-dot text-gold-500 mr-1.5"></i>Διογένους 23, Κάτω Τούμπα, Θεσσαλονίκη (Τ.Κ. 544 53)</span>
-                <span class="hidden md:inline text-slate-400">|</span>
-                <span class="inline-flex items-center text-emerald-400 font-medium">
-                    <i class="fa-solid fa-circle-check mr-1.5 text-xs"></i>Συμβεβλημένος με ΕΟΠΥΥ
+                <span><i class="fa-solid fa-location-dot text-gold-500 mr-2 text-[11px]"></i>Διογένους 23, Κάτω Τούμπα, Θεσσαλονίκη</span>
+                <span class="hidden md:inline text-slate-600">|</span>
+                <span class="inline-flex items-center text-emerald-400/90 font-medium">
+                    <i class="fa-solid fa-circle-check mr-1.5 text-[10px]"></i>Συμβεβλημένος με ΕΟΠΥΥ
                 </span>
             </div>
-            <div class="flex items-center space-x-4">
+            <div>
                 <a href="tel:6983285095" class="hover:text-gold-500 transition-colors flex items-center font-medium text-white">
-                    <i class="fa-solid fa-phone text-gold-500 mr-1.5"></i> 698 328 5095
+                    <i class="fa-solid fa-phone text-gold-500 mr-2 text-[11px]"></i> 698 328 5095
                 </a>
             </div>
         </div>
     </div>
 
-    <!-- Navigation Header -->
-    <header class="bg-white/95 backdrop-blur-md sticky top-0 z-50 border-b border-slate-200 shadow-sm">
+    <!-- Header -->
+    <header class="bg-white sticky top-0 z-50 border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
-            <a href="#" class="flex flex-col group">
-                <span class="font-serif text-2xl font-bold tracking-tight text-navy-900 transition-colors group-hover:text-teal-700">
+            <a href="#" class="flex flex-col">
+                <span class="font-serif text-[1.4rem] font-semibold tracking-tight text-navy-900">
                     Δρ. Ιωάννης Κούσλης
                 </span>
-                <span class="text-xs uppercase tracking-wider text-teal-700 font-semibold">
-                    Ειδικος Γενικος - Οικογενειακος Ιατρος | MD, MSc
+                <span class="text-[10px] uppercase tracking-[0.18em] text-teal-700 font-medium mt-0.5">
+                    Ειδικός Γενικός – Οικογενειακός Ιατρός · MD, MSc
                 </span>
             </a>
 
-            <nav class="hidden md:flex items-center space-x-7 text-sm font-medium text-slate-700">
-                <a href="#about" class="nav-link hover:text-navy-900 transition-colors">Ο Ιατρός</a>
-                <a href="#services" class="nav-link hover:text-navy-900 transition-colors">Υπηρεσίες</a>
-                <a href="#technology" class="nav-link hover:text-navy-900 transition-colors">Τεχνολογία</a>
-                <a href="#certifications" class="nav-link hover:text-navy-900 transition-colors">Εξειδίκευση</a>
-                <a href="#reviews" class="nav-link hover:text-navy-900 transition-colors">Αξιολογήσεις</a>
-                <a href="#contact" class="nav-link hover:text-navy-900 transition-colors">Επικοινωνία</a>
+            <nav class="hidden md:flex items-center space-x-8 text-sm text-slate-600">
+                <a href="#about" class="nav-link hover:text-navy-900">Ο Ιατρός</a>
+                <a href="#services" class="nav-link hover:text-navy-900">Υπηρεσίες</a>
+                <a href="#technology" class="nav-link hover:text-navy-900">Τεχνολογία</a>
+                <a href="#certifications" class="nav-link hover:text-navy-900">Εξειδίκευση</a>
+                <a href="#reviews" class="nav-link hover:text-navy-900">Αξιολογήσεις</a>
+                <a href="#contact" class="nav-link hover:text-navy-900">Επικοινωνία</a>
             </nav>
 
             <div class="hidden md:flex items-center">
                 <a href="tel:6983285095" class="btn btn-navy px-5 py-2.5 text-sm">
-                    <i class="fa-solid fa-phone mr-2 text-gold-500 text-xs"></i>
+                    <i class="fa-solid fa-phone mr-2 text-gold-500 text-[11px]"></i>
                     698 328 5095
                 </a>
             </div>
 
-            <button id="mobile-menu-btn" class="md:hidden text-navy-900 focus:outline-none p-2" aria-label="Μενού">
-                <i class="fa-solid fa-bars text-2xl"></i>
+            <button id="mobile-menu-btn" class="md:hidden text-navy-900 p-2" aria-label="Μενού">
+                <i class="fa-solid fa-bars text-xl"></i>
             </button>
         </div>
 
-        <!-- Mobile Navigation -->
-        <div id="mobile-menu" class="md:hidden bg-white border-b border-slate-200 px-4 overflow-hidden max-h-0 opacity-0 transition-all duration-500 ease-out">
-            <div class="py-4 space-y-3">
-                <a href="#about" class="block py-2 text-slate-700 hover:text-navy-900 font-medium border-b border-slate-100">Ο Ιατρός</a>
-                <a href="#services" class="block py-2 text-slate-700 hover:text-navy-900 font-medium border-b border-slate-100">Υπηρεσίες</a>
-                <a href="#technology" class="block py-2 text-slate-700 hover:text-navy-900 font-medium border-b border-slate-100">Τεχνολογία</a>
-                <a href="#certifications" class="block py-2 text-slate-700 hover:text-navy-900 font-medium border-b border-slate-100">Εξειδίκευση</a>
-                <a href="#reviews" class="block py-2 text-slate-700 hover:text-navy-900 font-medium border-b border-slate-100">Αξιολογήσεις</a>
-                <a href="#contact" class="block py-2 text-slate-700 hover:text-navy-900 font-medium">Επικοινωνία</a>
-                <div class="pt-2">
-                    <a href="tel:6983285095" class="btn btn-navy w-full py-3">
-                        <i class="fa-solid fa-phone mr-2 text-gold-500"></i> Κλήση: 698 328 5095
+        <div id="mobile-menu" class="md:hidden bg-white border-t border-slate-100 px-4 overflow-hidden max-h-0 opacity-0 transition-all duration-400 ease-out">
+            <div class="py-4 space-y-1">
+                <a href="#about" class="block py-2.5 text-slate-700 hover:text-navy-900 border-b border-slate-100 text-sm">Ο Ιατρός</a>
+                <a href="#services" class="block py-2.5 text-slate-700 hover:text-navy-900 border-b border-slate-100 text-sm">Υπηρεσίες</a>
+                <a href="#technology" class="block py-2.5 text-slate-700 hover:text-navy-900 border-b border-slate-100 text-sm">Τεχνολογία</a>
+                <a href="#certifications" class="block py-2.5 text-slate-700 hover:text-navy-900 border-b border-slate-100 text-sm">Εξειδίκευση</a>
+                <a href="#reviews" class="block py-2.5 text-slate-700 hover:text-navy-900 border-b border-slate-100 text-sm">Αξιολογήσεις</a>
+                <a href="#contact" class="block py-2.5 text-slate-700 hover:text-navy-900 text-sm">Επικοινωνία</a>
+                <div class="pt-3">
+                    <a href="tel:6983285095" class="btn btn-navy w-full py-3 text-sm">
+                        <i class="fa-solid fa-phone mr-2 text-gold-500 text-xs"></i> Κλήση: 698 328 5095
                     </a>
                 </div>
             </div>
@@ -427,86 +374,75 @@
 
     <main>
         <!-- ============== HERO ============== -->
-        <section class="relative py-14 md:py-20 border-b border-slate-200 overflow-hidden">
-            <div class="hero-bg"></div>
+        <section class="py-14 md:py-20 border-b border-slate-200 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
 
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-
-                    <!-- Hero Content -->
-                    <div class="lg:col-span-7 space-y-6 reveal reveal-left">
-                        <div class="inline-flex items-center space-x-2 bg-navy-900 text-white px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider shadow-lg">
-                            <i class="fa-solid fa-stethoscope text-gold-500 animate-pulse-soft"></i>
-                            <span>Ειδικός Γενικός - Οικογενειακός Ιατρός (MD, MSc)</span>
+                    <!-- Content -->
+                    <div class="lg:col-span-7 space-y-6 reveal">
+                        <div class="inline-flex items-center bg-navy-900/5 border border-navy-900/10 text-navy-900 px-3 py-1.5 rounded-sm text-[11px] font-semibold uppercase tracking-[0.14em]">
+                            <i class="fa-solid fa-stethoscope text-gold-600 mr-2 text-[10px]"></i>
+                            <span>Ειδικός Γενικός – Οικογενειακός Ιατρός · MD, MSc</span>
                         </div>
 
-                        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif text-navy-900 leading-[1.15] font-semibold">
-                            Ολοκληρωμένη Πρωτοβάθμια Φροντίδα Υγείας & <span class="relative inline-block">
-                                <span class="relative z-10">Προληπτική Ιατρική.</span>
-                                <span class="absolute left-0 bottom-1 w-full h-2 bg-gold-500/25 -z-0 rounded"></span>
-                            </span>
+                        <h1 class="text-3xl sm:text-4xl lg:text-[2.75rem] font-serif text-navy-900 leading-[1.18] font-semibold">
+                            Ολοκληρωμένη Πρωτοβάθμια Φροντίδα Υγείας & Προληπτική Ιατρική.
                         </h1>
 
-                        <p class="text-base sm:text-lg text-slate-700 leading-relaxed max-w-xl">
-                            Ο <strong class="text-navy-900">Δρ. Ιωάννης Κούσλης</strong> παρέχει εξατομικευμένες ιατρικές υπηρεσίες στην Κάτω Τούμπα Θεσσαλονίκης, εστιάζοντας στην πρόληψη, τη διαχείριση χρόνιων νοσημάτων, την επείγουσα φροντίδα και την ηλεκτρονική συνταγογράφηση ΕΟΠΥΥ.
+                        <p class="text-base sm:text-[1.05rem] text-slate-600 leading-relaxed max-w-2xl">
+                            Ο <strong class="text-navy-900 font-semibold">Δρ. Ιωάννης Κούσλης</strong> παρέχει εξατομικευμένες ιατρικές υπηρεσίες στην Κάτω Τούμπα Θεσσαλονίκης, εστιάζοντας στην πρόληψη, τη διαχείριση χρόνιων νοσημάτων, την επείγουσα φροντίδα και την ηλεκτρονική συνταγογράφηση ΕΟΠΥΥ.
                         </p>
 
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm font-medium text-slate-800 pt-2 stagger">
-                            <div class="flex items-center bg-white/80 backdrop-blur p-3 rounded-lg border border-slate-200 shadow-sm">
-                                <i class="fa-solid fa-graduation-cap text-navy-900 text-lg mr-3"></i>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-slate-700 pt-1 stagger">
+                            <div class="flex items-center bg-slate-50 border border-slate-200 px-4 py-3 rounded-sm">
+                                <i class="fa-solid fa-graduation-cap text-navy-900 mr-3"></i>
                                 <span>MSc «Υγεία & Άσκηση» (Ιατρική ΑΠΘ)</span>
                             </div>
-                            <div class="flex items-center bg-white/80 backdrop-blur p-3 rounded-lg border border-slate-200 shadow-sm">
-                                <i class="fa-solid fa-heart-pulse text-navy-900 text-lg mr-3"></i>
+                            <div class="flex items-center bg-slate-50 border border-slate-200 px-4 py-3 rounded-sm">
+                                <i class="fa-solid fa-heart-pulse text-navy-900 mr-3"></i>
                                 <span>Εκπαιδευθείς στο Ωνάσειο Καρδιοχειρουργικό</span>
                             </div>
                         </div>
 
                         <div class="pt-4 flex flex-col sm:flex-row gap-3">
-                            <a href="tel:6983285095" class="btn btn-navy px-7 py-3.5 text-base">
-                                <i class="fa-solid fa-phone mr-2.5 text-gold-500"></i>
+                            <a href="tel:6983285095" class="btn btn-navy px-6 py-3.5 text-[15px]">
+                                <i class="fa-solid fa-phone mr-2.5 text-gold-500 text-xs"></i>
                                 <span>Κλήση Ιατρείου: 698 328 5095</span>
                             </a>
                             <a href="https://www.google.com/maps/search/?api=1&query=Διογένους+23+Κάτω+Τούμπα+Θεσσαλονίκη"
                                target="_blank" rel="noopener noreferrer"
-                               class="btn btn-outline px-6 py-3.5 text-base">
-                                <i class="fa-solid fa-map-location-dot mr-2.5"></i>
+                               class="btn btn-outline px-6 py-3.5 text-[15px]">
+                                <i class="fa-solid fa-map-location-dot mr-2.5 text-xs"></i>
                                 <span>Οδηγίες Πρόσβασης</span>
                             </a>
                         </div>
                     </div>
 
-                    <!-- Hero Image (herodr.jpg) -->
-                    <div class="lg:col-span-5 reveal reveal-right">
+                    <!-- Hero portrait (herodr.jpg) -->
+                    <div class="lg:col-span-5 reveal">
                         <div class="relative">
-                            <!-- Decorative glow -->
-                            <div class="absolute -inset-4 bg-gradient-to-tr from-gold-500/20 via-transparent to-teal-700/20 rounded-3xl blur-2xl"></div>
+                            <div class="hero-portrait aspect-[4/5]">
+                                <img src="herodr.jpg" alt="Δρ. Ιωάννης Κούσλης - Ειδικός Γενικός Οικογενειακός Ιατρός" loading="eager">
+                            </div>
 
-                            <!-- Floating badge: ΕΟΠΥΥ -->
-                            <div class="float-badge absolute -top-3 -left-3 sm:-left-6 z-20 bg-white rounded-xl shadow-xl border border-slate-200 px-4 py-3 flex items-center gap-3">
-                                <div class="w-9 h-9 rounded-lg bg-emerald-500/10 text-emerald-600 flex items-center justify-center">
+                            <div class="portrait-badge badge-tl">
+                                <div class="w-7 h-7 rounded-sm bg-emerald-50 text-emerald-600 flex items-center justify-center text-xs">
                                     <i class="fa-solid fa-circle-check"></i>
                                 </div>
                                 <div class="leading-tight">
-                                    <p class="text-[11px] uppercase tracking-wider text-slate-500 font-semibold">Συμβεβλημένος</p>
-                                    <p class="text-sm font-bold text-navy-900">ΕΟΠΥΥ</p>
+                                    <p class="text-[9px] uppercase tracking-[0.14em] text-slate-500 font-semibold">Συμβεβλημένος</p>
+                                    <p class="text-[12px] font-semibold text-navy-900">ΕΟΠΥΥ</p>
                                 </div>
                             </div>
 
-                            <!-- Floating badge: MSc -->
-                            <div class="float-badge delay-1 absolute -bottom-3 -right-2 sm:-right-6 z-20 bg-white rounded-xl shadow-xl border border-slate-200 px-4 py-3 flex items-center gap-3">
-                                <div class="w-9 h-9 rounded-lg bg-gold-500/15 text-gold-600 flex items-center justify-center">
+                            <div class="portrait-badge badge-br">
+                                <div class="w-7 h-7 rounded-sm bg-amber-50 text-gold-600 flex items-center justify-center text-xs">
                                     <i class="fa-solid fa-award"></i>
                                 </div>
                                 <div class="leading-tight">
-                                    <p class="text-[11px] uppercase tracking-wider text-slate-500 font-semibold">MSc Ιατρικής</p>
-                                    <p class="text-sm font-bold text-navy-900">Α.Π.Θ.</p>
+                                    <p class="text-[9px] uppercase tracking-[0.14em] text-slate-500 font-semibold">MSc Ιατρικής</p>
+                                    <p class="text-[12px] font-semibold text-navy-900">Α.Π.Θ.</p>
                                 </div>
-                            </div>
-
-                            <!-- Image -->
-                            <div class="hero-img-wrap aspect-[4/5] sm:aspect-[5/6]">
-                                <img src="herodr.jpg" alt="Δρ. Ιωάννης Κούσλης - Ειδικός Γενικός Οικογενειακός Ιατρός" loading="eager">
                             </div>
                         </div>
                     </div>
@@ -515,46 +451,46 @@
             </div>
         </section>
 
-        <!-- ============== QUICK INFO STRIP ============== -->
-        <section class="py-10 bg-white border-b border-slate-200">
+        <!-- ============== QUICK INFO ============== -->
+        <section class="py-10 bg-slate-50 border-b border-slate-200">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 stagger">
-                    <div class="bg-warmbg p-5 rounded-xl border border-slate-200 flex items-start gap-4 hover:shadow-lg transition-shadow duration-500">
-                        <div class="w-11 h-11 rounded-lg bg-navy-900 text-gold-500 flex items-center justify-center shrink-0">
-                            <i class="fa-solid fa-location-dot"></i>
+                    <div class="bg-white p-5 rounded-sm border border-slate-200 flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-sm border border-slate-200 text-navy-900 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-location-dot text-sm"></i>
                         </div>
                         <div>
-                            <p class="text-xs uppercase tracking-wider text-teal-700 font-bold">Διεύθυνση</p>
+                            <p class="text-[10px] uppercase tracking-[0.16em] text-teal-700 font-semibold">Διεύθυνση</p>
                             <p class="text-sm text-navy-900 font-semibold mt-1">Διογένους 23, Κάτω Τούμπα</p>
                             <p class="text-xs text-slate-500 mt-0.5">Τ.Κ. 544 53, Θεσσαλονίκη</p>
                         </div>
                     </div>
-                    <div class="bg-warmbg p-5 rounded-xl border border-slate-200 flex items-start gap-4 hover:shadow-lg transition-shadow duration-500">
-                        <div class="w-11 h-11 rounded-lg bg-navy-900 text-gold-500 flex items-center justify-center shrink-0">
-                            <i class="fa-solid fa-phone"></i>
+                    <div class="bg-white p-5 rounded-sm border border-slate-200 flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-sm border border-slate-200 text-navy-900 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-phone text-sm"></i>
                         </div>
                         <div>
-                            <p class="text-xs uppercase tracking-wider text-teal-700 font-bold">Τηλέφωνο</p>
+                            <p class="text-[10px] uppercase tracking-[0.16em] text-teal-700 font-semibold">Τηλέφωνο</p>
                             <a href="tel:6983285095" class="text-sm text-navy-900 font-semibold mt-1 block hover:underline">698 328 5095</a>
                             <p class="text-xs text-slate-500 mt-0.5">Κατόπιν ραντεβού</p>
                         </div>
                     </div>
-                    <div class="bg-warmbg p-5 rounded-xl border border-slate-200 flex items-start gap-4 hover:shadow-lg transition-shadow duration-500">
-                        <div class="w-11 h-11 rounded-lg bg-navy-900 text-gold-500 flex items-center justify-center shrink-0">
-                            <i class="fa-solid fa-file-medical"></i>
+                    <div class="bg-white p-5 rounded-sm border border-slate-200 flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-sm border border-slate-200 text-navy-900 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-file-medical text-sm"></i>
                         </div>
                         <div>
-                            <p class="text-xs uppercase tracking-wider text-teal-700 font-bold">Ταμείο</p>
+                            <p class="text-[10px] uppercase tracking-[0.16em] text-teal-700 font-semibold">Ταμείο</p>
                             <p class="text-sm text-navy-900 font-semibold mt-1">ΕΟΠΥΥ</p>
                             <p class="text-xs text-slate-500 mt-0.5">Συνταγές & Παραπεμπτικά</p>
                         </div>
                     </div>
-                    <div class="bg-warmbg p-5 rounded-xl border border-slate-200 flex items-start gap-4 hover:shadow-lg transition-shadow duration-500">
-                        <div class="w-11 h-11 rounded-lg bg-navy-900 text-gold-500 flex items-center justify-center shrink-0">
-                            <i class="fa-solid fa-handshake-angle"></i>
+                    <div class="bg-white p-5 rounded-sm border border-slate-200 flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-sm border border-slate-200 text-navy-900 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-handshake-angle text-sm"></i>
                         </div>
                         <div>
-                            <p class="text-xs uppercase tracking-wider text-teal-700 font-bold">Κοινωνική Μέριμνα</p>
+                            <p class="text-[10px] uppercase tracking-[0.16em] text-teal-700 font-semibold">Κοινωνική Μέριμνα</p>
                             <p class="text-sm text-navy-900 font-semibold mt-1">Ειδικές τιμές</p>
                             <p class="text-xs text-slate-500 mt-0.5">ΑμεΑ, Φοιτητές, Άνεργοι</p>
                         </div>
@@ -566,59 +502,61 @@
         <!-- ============== ABOUT ============== -->
         <section id="about" class="py-16 md:py-24 bg-white border-b border-slate-200">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="max-w-3xl mx-auto text-center mb-12 reveal">
-                    <h2 class="text-xs uppercase tracking-widest text-teal-700 font-bold mb-2">Βιογραφικό & Εμπειρία</h2>
-                    <h3 class="text-3xl md:text-4xl font-serif text-navy-900 font-semibold">Σχετικά με τον Ιατρό</h3>
-                    <div class="gold-divider"></div>
+                <div class="max-w-3xl mx-auto text-center mb-14 reveal">
+                    <p class="text-[11px] uppercase tracking-[0.2em] text-teal-700 font-semibold mb-3">Βιογραφικό & Εμπειρία</p>
+                    <h2 class="text-3xl md:text-4xl font-serif text-navy-900 font-semibold">Σχετικά με τον Ιατρό</h2>
+                    <div class="gold-line"></div>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-                    <div class="lg:col-span-7 space-y-5 text-slate-700 leading-relaxed text-base reveal reveal-left">
-                        <p class="text-lg font-serif text-navy-900 italic font-medium border-l-4 border-gold-500 pl-4 py-1">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                    <div class="lg:col-span-7 space-y-5 text-slate-600 leading-[1.75] text-[15px] reveal">
+                        <p class="text-[17px] font-serif text-navy-900 italic border-l-2 border-gold-500 pl-5 py-1">
                             «Η Γενική Ιατρική αποτελεί τον θεμέλιο λίθο της υγείας. Στόχος μου είναι η ολοκληρωμένη πρόληψη, η έγκυρη διάγνωση και η συνεχής υποστήριξη του ασθενούς με ανθρώπινη προσέγγιση.»
                         </p>
                         <p>
-                            Ο <strong>Δρ. Ιωάννης Κούσλης (MD, MSc)</strong> είναι Ειδικός Γενικός - Οικογενειακός Ιατρός με εκτεταμένη νοσοκομειακή και προνοσοκομειακή εμπειρία. Διατηρεί ιδιωτικό ιατρείο στην Κάτω Τούμπα Θεσσαλονίκης.
+                            Ο <strong class="text-navy-900 font-semibold">Δρ. Ιωάννης Κούσλης (MD, MSc)</strong> είναι Ειδικός Γενικός – Οικογενειακός Ιατρός με εκτεταμένη νοσοκομειακή και προνοσοκομειακή εμπειρία. Διατηρεί ιδιωτικό ιατρείο στην Κάτω Τούμπα Θεσσαλονίκης.
                         </p>
                         <p>
-                            Έχει ολοκληρώσει τις μεταπτυχιακές του σπουδές (MSc) στο τμήμα Ιατρικής του Αριστοτελείου Πανεπιστημίου Θεσσαλονίκης (ΑΠΘ) με αντικείμενο «Υγεία και Άσκηση». Παράλληλα, έχει εκπαιδευτεί στο Καρδιολογικό Τμήμα του <strong>Ωνασείου Καρδιοχειρουργικού Κέντρου</strong>, αποκτώντας πολύτιμη κλινική εμπειρία στη διαχείριση καρδιολογικών συμβαμάτων και επειγόντων περιστατικών.
+                            Έχει ολοκληρώσει τις μεταπτυχιακές του σπουδές (MSc) στο τμήμα Ιατρικής του Αριστοτελείου Πανεπιστημίου Θεσσαλονίκης (ΑΠΘ) με αντικείμενο «Υγεία και Άσκηση». Παράλληλα, έχει εκπαιδευτεί στο Καρδιολογικό Τμήμα του <strong class="text-navy-900 font-semibold">Ωνασείου Καρδιοχειρουργικού Κέντρου</strong>, αποκτώντας πολύτιμη κλινική εμπειρία στη διαχείριση καρδιολογικών συμβαμάτων και επειγόντων περιστατικών.
                         </p>
                         <p>
                             Έχει υπηρετήσει σε τμήματα Εσωτερικής Παθολογίας και Επειγόντων Περιστατικών στο Γενικό Νοσοκομείο Βόλου και στο Γενικό Νοσοκομείο Φλώρινας, ενώ διαθέτει σημαντική εμπειρία στην Επείγουσα Ιατρική (ΕΚΑΒ). Είναι τακτικό μέλος του Ιατρικού Συλλόγου Θεσσαλονίκης (Ι.Σ.Θ.).
                         </p>
                     </div>
 
-                    <div class="lg:col-span-5 bg-warmbg p-6 rounded-xl border border-slate-200 space-y-4 reveal reveal-right">
-                        <h4 class="text-lg font-serif font-bold text-navy-900 border-b border-slate-200 pb-3">
-                            Τίτλοι & Νοσοκομειακή Προϋπηρεσία
-                        </h4>
-                        <div class="space-y-4 text-sm stagger">
-                            <div class="flex items-start space-x-3">
-                                <i class="fa-solid fa-award text-gold-500 mt-1"></i>
-                                <div>
-                                    <strong class="text-navy-900 block">Μεταπτυχιακός Τίτλος (MSc)</strong>
-                                    <span class="text-slate-600">«Υγεία και Άσκηση» – Τμήμα Ιατρικής Α.Π.Θ.</span>
+                    <div class="lg:col-span-5 reveal">
+                        <div class="bg-slate-50 p-7 rounded-sm border border-slate-200">
+                            <h3 class="text-[17px] font-serif font-semibold text-navy-900 pb-4 mb-4 border-b border-slate-200">
+                                Τίτλοι & Νοσοκομειακή Προϋπηρεσία
+                            </h3>
+                            <div class="space-y-5 text-sm">
+                                <div class="flex items-start gap-4">
+                                    <i class="fa-solid fa-award text-gold-600 mt-1 text-xs w-4 text-center"></i>
+                                    <div>
+                                        <strong class="text-navy-900 block font-semibold">Μεταπτυχιακός Τίτλος (MSc)</strong>
+                                        <span class="text-slate-600">«Υγεία και Άσκηση» – Τμήμα Ιατρικής Α.Π.Θ.</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="flex items-start space-x-3">
-                                <i class="fa-solid fa-hospital text-navy-900 mt-1"></i>
-                                <div>
-                                    <strong class="text-navy-900 block">Ωνάσειο Καρδιοχειρουργικό Κέντρο</strong>
-                                    <span class="text-slate-600">Εκπαιδευθείς Ιατρός στο Καρδιολογικό Τμήμα</span>
+                                <div class="flex items-start gap-4">
+                                    <i class="fa-solid fa-hospital text-navy-900 mt-1 text-xs w-4 text-center"></i>
+                                    <div>
+                                        <strong class="text-navy-900 block font-semibold">Ωνάσειο Καρδιοχειρουργικό Κέντρο</strong>
+                                        <span class="text-slate-600">Εκπαιδευθείς Ιατρός στο Καρδιολογικό Τμήμα</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="flex items-start space-x-3">
-                                <i class="fa-solid fa-truck-medical text-navy-900 mt-1"></i>
-                                <div>
-                                    <strong class="text-navy-900 block">Επείγουσα Ιατρική (ΕΚΑΒ)</strong>
-                                    <span class="text-slate-600">Εμπειρία στην προνοσοκομειακή φροντίδα & επείγοντα</span>
+                                <div class="flex items-start gap-4">
+                                    <i class="fa-solid fa-truck-medical text-navy-900 mt-1 text-xs w-4 text-center"></i>
+                                    <div>
+                                        <strong class="text-navy-900 block font-semibold">Επείγουσα Ιατρική (ΕΚΑΒ)</strong>
+                                        <span class="text-slate-600">Εμπειρία στην προνοσοκομειακή φροντίδα & επείγοντα</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="flex items-start space-x-3">
-                                <i class="fa-solid fa-user-nurse text-navy-900 mt-1"></i>
-                                <div>
-                                    <strong class="text-navy-900 block">Εσωτερική Παθολογία & Επείγοντα</strong>
-                                    <span class="text-slate-600">Γενικό Νοσοκομείο Βόλου & Γ.Ν. Φλώρινας</span>
+                                <div class="flex items-start gap-4">
+                                    <i class="fa-solid fa-user-nurse text-navy-900 mt-1 text-xs w-4 text-center"></i>
+                                    <div>
+                                        <strong class="text-navy-900 block font-semibold">Εσωτερική Παθολογία & Επείγοντα</strong>
+                                        <span class="text-slate-600">Γενικό Νοσοκομείο Βόλου & Γ.Ν. Φλώρινας</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -630,69 +568,69 @@
         <!-- ============== SERVICES ============== -->
         <section id="services" class="py-16 md:py-24 bg-slate-50 border-b border-slate-200">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="max-w-3xl mx-auto text-center mb-16 reveal">
-                    <h2 class="text-xs uppercase tracking-widest text-teal-700 font-bold mb-2">Ιατρική Φροντίδα</h2>
-                    <h3 class="text-3xl md:text-4xl font-serif text-navy-900 font-semibold">Παρεχόμενες Υπηρεσίες</h3>
-                    <p class="text-slate-600 mt-3 text-sm md:text-base">Εξατομικευμένη αντιμετώπιση για κάθε ηλικία με έμφαση στην πρόληψη.</p>
-                    <div class="gold-divider"></div>
+                <div class="max-w-3xl mx-auto text-center mb-14 reveal">
+                    <p class="text-[11px] uppercase tracking-[0.2em] text-teal-700 font-semibold mb-3">Ιατρική Φροντίδα</p>
+                    <h2 class="text-3xl md:text-4xl font-serif text-navy-900 font-semibold">Παρεχόμενες Υπηρεσίες</h2>
+                    <p class="text-slate-600 mt-4 text-sm md:text-[15px]">Εξατομικευμένη αντιμετώπιση για κάθε ηλικία, με έμφαση στην πρόληψη.</p>
+                    <div class="gold-line"></div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 stagger">
-                    <div class="service-card bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-                        <div class="icon-box w-12 h-12 bg-navy-900 text-gold-500 rounded-lg flex items-center justify-center text-lg mb-4">
+                    <div class="service-card bg-white p-7 rounded-sm border border-slate-200">
+                        <div class="w-11 h-11 border border-slate-200 text-navy-900 rounded-sm flex items-center justify-center mb-5">
                             <i class="fa-solid fa-prescription"></i>
                         </div>
-                        <h4 class="text-lg font-serif font-bold text-navy-900 mb-2">Ηλεκτρονική Συνταγογράφηση</h4>
+                        <h3 class="text-[17px] font-serif font-semibold text-navy-900 mb-2.5">Ηλεκτρονική Συνταγογράφηση</h3>
                         <p class="text-slate-600 text-sm leading-relaxed">
                             Έκδοση συνταγών ΕΟΠΥΥ (δίμηνη/τρίμηνη), εμβόλια, παραπεμπτικά διαγνωστικών και αιματολογικών εξετάσεων.
                         </p>
                     </div>
 
-                    <div class="service-card bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-                        <div class="icon-box w-12 h-12 bg-navy-900 text-gold-500 rounded-lg flex items-center justify-center text-lg mb-4">
+                    <div class="service-card bg-white p-7 rounded-sm border border-slate-200">
+                        <div class="w-11 h-11 border border-slate-200 text-navy-900 rounded-sm flex items-center justify-center mb-5">
                             <i class="fa-solid fa-heart-circle-check"></i>
                         </div>
-                        <h4 class="text-lg font-serif font-bold text-navy-900 mb-2">Διαχείριση Χρόνιων Νοσημάτων</h4>
+                        <h3 class="text-[17px] font-serif font-semibold text-navy-900 mb-2.5">Διαχείριση Χρόνιων Νοσημάτων</h3>
                         <p class="text-slate-600 text-sm leading-relaxed">
                             Παρακολούθηση & ρύθμιση για Αρτηριακή Υπέρταση, Σακχαρώδη Διαβήτη, Χοληστερίνη & Οστεοπόρωση.
                         </p>
                     </div>
 
-                    <div class="service-card bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-                        <div class="icon-box w-12 h-12 bg-navy-900 text-gold-500 rounded-lg flex items-center justify-center text-lg mb-4">
+                    <div class="service-card bg-white p-7 rounded-sm border border-slate-200">
+                        <div class="w-11 h-11 border border-slate-200 text-navy-900 rounded-sm flex items-center justify-center mb-5">
                             <i class="fa-solid fa-wave-square"></i>
                         </div>
-                        <h4 class="text-lg font-serif font-bold text-navy-900 mb-2">Προληπτικός Έλεγχος & ΗΚΓ</h4>
+                        <h3 class="text-[17px] font-serif font-semibold text-navy-900 mb-2.5">Προληπτικός Έλεγχος & ΗΚΓ</h3>
                         <p class="text-slate-600 text-sm leading-relaxed">
                             Διενέργεια Ηλεκτροκαρδιογραφήματος (ΗΚΓ), μέτρηση πίεσης, προληπτικός έλεγχος (Check-up) και αξιολόγηση εξετάσεων.
                         </p>
                     </div>
 
-                    <div class="service-card bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-                        <div class="icon-box w-12 h-12 bg-navy-900 text-gold-500 rounded-lg flex items-center justify-center text-lg mb-4">
+                    <div class="service-card bg-white p-7 rounded-sm border border-slate-200">
+                        <div class="w-11 h-11 border border-slate-200 text-navy-900 rounded-sm flex items-center justify-center mb-5">
                             <i class="fa-solid fa-file-signature"></i>
                         </div>
-                        <h4 class="text-lg font-serif font-bold text-navy-900 mb-2">Πιστοποιητικά Υγείας</h4>
+                        <h3 class="text-[17px] font-serif font-semibold text-navy-900 mb-2.5">Πιστοποιητικά Υγείας</h3>
                         <p class="text-slate-600 text-sm leading-relaxed">
                             Έκδοση ιατρικών βεβαιώσεων & πιστοποιητικών για εργασία, δίπλωμα οδήγησης, αθλητικές δραστηριότητες και φοιτητές.
                         </p>
                     </div>
 
-                    <div class="service-card bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-                        <div class="icon-box w-12 h-12 bg-navy-900 text-gold-500 rounded-lg flex items-center justify-center text-lg mb-4">
+                    <div class="service-card bg-white p-7 rounded-sm border border-slate-200">
+                        <div class="w-11 h-11 border border-slate-200 text-navy-900 rounded-sm flex items-center justify-center mb-5">
                             <i class="fa-solid fa-bandage"></i>
                         </div>
-                        <h4 class="text-lg font-serif font-bold text-navy-900 mb-2">Φροντίδα Τραυμάτων</h4>
+                        <h3 class="text-[17px] font-serif font-semibold text-navy-900 mb-2.5">Φροντίδα Τραυμάτων</h3>
                         <p class="text-slate-600 text-sm leading-relaxed">
                             Καθαρισμός & συρραφή τραυμάτων, αλλαγή επιδέσμων, αντιμετώπιση λοιμώξεων (γρίπη, ιώσεις) και οξέων περιστατικών.
                         </p>
                     </div>
 
-                    <div class="service-card bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-                        <div class="icon-box w-12 h-12 bg-navy-900 text-gold-500 rounded-lg flex items-center justify-center text-lg mb-4">
+                    <div class="service-card bg-white p-7 rounded-sm border border-slate-200">
+                        <div class="w-11 h-11 border border-slate-200 text-navy-900 rounded-sm flex items-center justify-center mb-5">
                             <i class="fa-solid fa-person-running"></i>
                         </div>
-                        <h4 class="text-lg font-serif font-bold text-navy-900 mb-2">Συμβουλευτική Υγείας & Άσκησης</h4>
+                        <h3 class="text-[17px] font-serif font-semibold text-navy-900 mb-2.5">Συμβουλευτική Υγείας & Άσκησης</h3>
                         <p class="text-slate-600 text-sm leading-relaxed">
                             Εξειδικευμένες συμβουλές για βελτίωση ποιότητας ζωής, διατροφή και άσκηση βάσει του μεταπτυχιακού τίτλου MSc.
                         </p>
@@ -701,47 +639,41 @@
             </div>
         </section>
 
-        <!-- ============== TECHNOLOGY / AI IN MEDICINE ============== -->
-        <section id="technology" class="py-16 md:py-24 bg-navy-950 text-white relative overflow-hidden">
-            <!-- Decorative background -->
-            <div class="absolute inset-0 opacity-[0.06]" style="background-image: url('https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?auto=format&fit=crop&w=2000&q=80'); background-size: cover; background-position: center;"></div>
-
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="max-w-3xl mx-auto text-center mb-16 reveal">
-                    <h2 class="text-xs uppercase tracking-widest text-gold-500 font-bold mb-2">Σύγχρονη Ιατρική</h2>
-                    <h3 class="text-3xl md:text-4xl font-serif font-semibold">Τεχνολογία & Εξατομικευμένη Φροντίδα</h3>
-                    <p class="text-slate-300 mt-4 text-sm md:text-base max-w-2xl mx-auto">
+        <!-- ============== TECHNOLOGY ============== -->
+        <section id="technology" class="py-16 md:py-24 bg-navy-950 text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto text-center mb-14 reveal">
+                    <p class="text-[11px] uppercase tracking-[0.2em] text-gold-500 font-semibold mb-3">Σύγχρονη Ιατρική</p>
+                    <h2 class="text-3xl md:text-4xl font-serif font-semibold">Τεχνολογία & Εξατομικευμένη Φροντίδα</h2>
+                    <p class="text-slate-400 mt-4 text-sm md:text-[15px] max-w-2xl mx-auto">
                         Συνδυάζουμε την κλινική εμπειρία με σύγχρονα διαγνωστικά εργαλεία, για ακριβέστερη διάγνωση και στοχευμένη θεραπεία.
                     </p>
-                    <div class="gold-divider"></div>
+                    <div class="gold-line"></div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 stagger">
-                    <!-- Card 1 -->
-                    <div class="tech-card h-72">
-                        <img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?auto=format&fit=crop&w=900&q=80" alt="Τεχνητή Νοημοσύνη στην Ιατρική" loading="lazy">
+                    <div class="tech-card h-80">
+                        <img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?auto=format&fit=crop&w=900&q=80" alt="Ψηφιακή Διάγνωση" loading="lazy">
                         <div class="tech-content">
-                            <i class="fa-solid fa-brain text-gold-500 text-2xl mb-2"></i>
-                            <h4 class="font-serif font-bold text-lg">Ψηφιακή Διάγνωση</h4>
-                            <p class="text-xs text-slate-200 mt-1.5 leading-relaxed">Υποστηριζόμενη ανάλυση εξετάσεων για ακριβέστερη κλινική εικόνα.</p>
+                            <i class="fa-solid fa-brain text-gold-500 text-lg mb-3"></i>
+                            <h3 class="font-serif font-semibold text-[17px]">Ψηφιακή Διάγνωση</h3>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">Υποστηριζόμενη ανάλυση εξετάσεων για ακριβέστερη κλινική εικόνα.</p>
                         </div>
                     </div>
-                    <!-- Card 2 -->
-                    <div class="tech-card h-72">
-                        <img src="https://images.unsplash.com/photo-1554475901-4538ddfbccc2?auto=format&fit=crop&w=900&q=80" alt="Βιοϊατρική Τεχνολογία" loading="lazy">
+                    <div class="tech-card h-80">
+                        <img src="https://images.unsplash.com/photo-1554475901-4538ddfbccc2?auto=format&fit=crop&w=900&q=80" alt="Βιοϊατρική Ακρίβεια" loading="lazy">
                         <div class="tech-content">
-                            <i class="fa-solid fa-dna text-gold-500 text-2xl mb-2"></i>
-                            <h4 class="font-serif font-bold text-lg">Βιοϊατρική Ακρίβεια</h4>
-                            <p class="text-xs text-slate-200 mt-1.5 leading-relaxed">Προηγμένη ερμηνεία βιοδεικτών για εξατομικευμένη θεραπευτική προσέγγιση.</p>
+                            <i class="fa-solid fa-dna text-gold-500 text-lg mb-3"></i>
+                            <h3 class="font-serif font-semibold text-[17px]">Βιοϊατρική Ακρίβεια</h3>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">Προηγμένη ερμηνεία βιοδεικτών για εξατομικευμένη θεραπευτική προσέγγιση.</p>
                         </div>
                     </div>
-                    <!-- Card 3 -->
-                    <div class="tech-card h-72">
-                        <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=900&q=80" alt="Καρδιολογική Παρακολούθηση" loading="lazy">
+                    <div class="tech-card h-80">
+                        <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=900&q=80" alt="Καρδιομεταβολικό Προφίλ" loading="lazy">
                         <div class="tech-content">
-                            <i class="fa-solid fa-heart-pulse text-gold-500 text-2xl mb-2"></i>
-                            <h4 class="font-serif font-bold text-lg">Καρδιομεταβολικό Προφίλ</h4>
-                            <p class="text-xs text-slate-200 mt-1.5 leading-relaxed">Ολοκληρωμένη αξιολόγηση καρδιαγγειακού κινδύνου & πρόληψη.</p>
+                            <i class="fa-solid fa-heart-pulse text-gold-500 text-lg mb-3"></i>
+                            <h3 class="font-serif font-semibold text-[17px]">Καρδιομεταβολικό Προφίλ</h3>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">Ολοκληρωμένη αξιολόγηση καρδιαγγειακού κινδύνου & πρόληψη.</p>
                         </div>
                     </div>
                 </div>
@@ -749,169 +681,157 @@
         </section>
 
         <!-- ============== CERTIFICATIONS ============== -->
-        <section id="certifications" class="py-16 bg-navy-900 text-white">
+        <section id="certifications" class="py-16 md:py-20 bg-white border-b border-slate-200">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="max-w-3xl mx-auto text-center mb-12 reveal">
-                    <h2 class="text-xs uppercase tracking-widest text-gold-500 font-bold mb-2">Εξειδίκευση & Πιστοποιήσεις</h2>
-                    <h3 class="text-2xl sm:text-3xl font-serif font-semibold">Διεθνή Πρωτόκολλα Επείγουσας Ιατρικής</h3>
-                    <div class="gold-divider"></div>
+                    <p class="text-[11px] uppercase tracking-[0.2em] text-teal-700 font-semibold mb-3">Εξειδίκευση & Πιστοποιήσεις</p>
+                    <h2 class="text-2xl sm:text-3xl font-serif text-navy-900 font-semibold">Διεθνή Πρωτόκολλα Επείγουσας Ιατρικής</h2>
+                    <div class="gold-line"></div>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-center stagger">
-                    <div class="cert-card bg-navy-800 p-6 rounded-xl border border-navy-800 space-y-2">
-                        <i class="cert-icon fa-solid fa-shield-heart text-gold-500 text-3xl mb-2 inline-block"></i>
-                        <h4 class="font-serif font-bold text-lg">Advanced Life Support (ALS)</h4>
-                        <p class="text-xs text-slate-300">Πιστοποιημένη Εξειδικευμένη Υποστήριξη της Ζωής (European Resuscitation Council)</p>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center stagger">
+                    <div class="cert-card border border-slate-200 p-7 rounded-sm bg-white">
+                        <i class="fa-solid fa-shield-heart text-gold-600 text-2xl mb-4"></i>
+                        <h3 class="font-serif font-semibold text-[15px] text-navy-900 mb-2">Advanced Life Support (ALS)</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">Πιστοποιημένη Εξειδικευμένη Υποστήριξη της Ζωής (European Resuscitation Council)</p>
                     </div>
-
-                    <div class="cert-card bg-navy-800 p-6 rounded-xl border border-navy-800 space-y-2">
-                        <i class="cert-icon fa-solid fa-lungs text-gold-500 text-3xl mb-2 inline-block"></i>
-                        <h4 class="font-serif font-bold text-lg">Διαχείριση Αεραγωγού</h4>
-                        <p class="text-xs text-slate-300">Πιστοποίηση στη Διαχείριση Αεραγωγού (Airway Management Course - ERC)</p>
+                    <div class="cert-card border border-slate-200 p-7 rounded-sm bg-white">
+                        <i class="fa-solid fa-lungs text-gold-600 text-2xl mb-4"></i>
+                        <h3 class="font-serif font-semibold text-[15px] text-navy-900 mb-2">Διαχείριση Αεραγωγού</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">Πιστοποίηση στη Διαχείριση Αεραγωγού (Airway Management Course – ERC)</p>
                     </div>
-
-                    <div class="cert-card bg-navy-800 p-6 rounded-xl border border-navy-800 space-y-2 sm:col-span-2 lg:col-span-1">
-                        <i class="cert-icon fa-solid fa-truck-medical text-gold-500 text-3xl mb-2 inline-block"></i>
-                        <h4 class="font-serif font-bold text-lg">PHTLS (NAEMT)</h4>
-                        <p class="text-xs text-slate-300">Προνοσοκομειακή Υποστήριξη Τραύματος (Prehospital Trauma Life Support)</p>
+                    <div class="cert-card border border-slate-200 p-7 rounded-sm bg-white">
+                        <i class="fa-solid fa-truck-medical text-gold-600 text-2xl mb-4"></i>
+                        <h3 class="font-serif font-semibold text-[15px] text-navy-900 mb-2">PHTLS (NAEMT)</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">Προνοσοκομειακή Υποστήριξη Τραύματος (Prehospital Trauma Life Support)</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- ============== REVIEWS ============== -->
-        <section id="reviews" class="py-16 md:py-24 bg-white border-b border-slate-200">
+        <section id="reviews" class="py-16 md:py-24 bg-slate-50 border-b border-slate-200">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="max-w-3xl mx-auto text-center mb-16 reveal">
-                    <h2 class="text-xs uppercase tracking-widest text-teal-700 font-bold mb-2">Αξιολογήσεις Ασθενών</h2>
-                    <h3 class="text-3xl md:text-4xl font-serif text-navy-900 font-semibold">Ενδεικτικά Σχόλια</h3>
-                    <p class="text-slate-600 mt-3 text-sm md:text-base">Διαβάστε την εμπειρία των ασθενών από την επίσκεψή τους στο ιατρείο.</p>
-                    <div class="gold-divider"></div>
+                <div class="max-w-3xl mx-auto text-center mb-14 reveal">
+                    <p class="text-[11px] uppercase tracking-[0.2em] text-teal-700 font-semibold mb-3">Αξιολογήσεις Ασθενών</p>
+                    <h2 class="text-3xl md:text-4xl font-serif text-navy-900 font-semibold">Ενδεικτικά Σχόλια</h2>
+                    <p class="text-slate-600 mt-4 text-sm md:text-[15px]">Διαβάστε την εμπειρία των ασθενών από την επίσκεψή τους στο ιατρείο.</p>
+                    <div class="gold-line"></div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 stagger">
-                    <div class="review-card bg-warmbg p-6 rounded-xl border border-slate-200 flex flex-col justify-between">
-                        <div class="space-y-3">
-                            <div class="flex text-gold-500 text-sm space-x-1">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 stagger">
+                    <div class="review-card bg-white p-7 rounded-sm border border-slate-200 flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div class="flex text-gold-500 text-xs space-x-1">
                                 <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                             </div>
-                            <p class="text-slate-700 text-sm italic leading-relaxed">
+                            <p class="text-slate-600 text-[14px] italic leading-relaxed">
                                 «Εξαιρετικός γιατρός, πολύ προσεκτικός και επεξηγηματικός. Μου ρύθμισε την πίεση που με ταλαιπωρούσε μήνες. Το ιατρείο στην Τούμπα είναι πολύ καθαρό και σύγχρονο.»
                             </p>
                         </div>
-                        <div class="pt-4 border-t border-slate-200/80 mt-4 flex justify-between items-center text-xs">
-                            <span class="font-bold text-navy-900">Γιώργος Π.</span>
-                            <span class="text-slate-500">Google Review</span>
+                        <div class="pt-5 border-t border-slate-100 mt-5 flex justify-between items-center text-[11px]">
+                            <span class="font-semibold text-navy-900">Γιώργος Π.</span>
+                            <span class="text-slate-400">Google Review</span>
                         </div>
                     </div>
 
-                    <div class="review-card bg-warmbg p-6 rounded-xl border border-slate-200 flex flex-col justify-between">
-                        <div class="space-y-3">
-                            <div class="flex text-gold-500 text-sm space-x-1">
+                    <div class="review-card bg-white p-7 rounded-sm border border-slate-200 flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div class="flex text-gold-500 text-xs space-x-1">
                                 <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                             </div>
-                            <p class="text-slate-700 text-sm italic leading-relaxed">
+                            <p class="text-slate-600 text-[14px] italic leading-relaxed">
                                 «Πήγα για συνταγογράφηση και προληπτικό έλεγχο. Ο κ. Κούσλης αφιέρωσε χρόνο να εξετάσει τις εξετάσεις μου αναλυτικά. Ευγενέστατος και άρτιος επιστήμονας.»
                             </p>
                         </div>
-                        <div class="pt-4 border-t border-slate-200/80 mt-4 flex justify-between items-center text-xs">
-                            <span class="font-bold text-navy-900">Μαρία Κ.</span>
-                            <span class="text-slate-500">Google Review</span>
+                        <div class="pt-5 border-t border-slate-100 mt-5 flex justify-between items-center text-[11px]">
+                            <span class="font-semibold text-navy-900">Μαρία Κ.</span>
+                            <span class="text-slate-400">Google Review</span>
                         </div>
                     </div>
 
-                    <div class="review-card bg-warmbg p-6 rounded-xl border border-slate-200 flex flex-col justify-between">
-                        <div class="space-y-3">
-                            <div class="flex text-gold-500 text-sm space-x-1">
+                    <div class="review-card bg-white p-7 rounded-sm border border-slate-200 flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div class="flex text-gold-500 text-xs space-x-1">
                                 <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                             </div>
-                            <p class="text-slate-700 text-sm italic leading-relaxed">
+                            <p class="text-slate-600 text-[14px] italic leading-relaxed">
                                 «Πολύ καλή εμπειρία! Άμεση εξυπηρέτηση, χωρίς καθυστερήσεις στα ραντεβού. Πολύ σημαντική και η εμπειρία του από το Ωνάσειο. Τον συστήνω ανεπιφύλακτα.»
                             </p>
                         </div>
-                        <div class="pt-4 border-t border-slate-200/80 mt-4 flex justify-between items-center text-xs">
-                            <span class="font-bold text-navy-900">Δημήτρης Σ.</span>
-                            <span class="text-slate-500">Google Review</span>
+                        <div class="pt-5 border-t border-slate-100 mt-5 flex justify-between items-center text-[11px]">
+                            <span class="font-semibold text-navy-900">Δημήτρης Σ.</span>
+                            <span class="text-slate-400">Google Review</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="text-center pt-4 reveal">
+                <div class="text-center pt-2 reveal">
                     <a href="https://www.google.com/maps/search/?api=1&query=Διογένους+23+Κάτω+Τούμπα+Θεσσαλονίκη+Κούσλης+Ιωάννης"
                        target="_blank" rel="noopener noreferrer"
-                       class="btn btn-gold px-8 py-4 text-base font-semibold inline-flex items-center space-x-3">
-                        <i class="fa-brands fa-google text-lg"></i>
+                       class="btn btn-gold px-7 py-3.5 text-[15px]">
+                        <i class="fa-brands fa-google mr-3"></i>
                         <span>Δείτε όλες τις αξιολογήσεις στο Google Maps</span>
-                        <i class="fa-solid fa-arrow-up-right-from-square text-xs ml-1"></i>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-3 opacity-80"></i>
                     </a>
                 </div>
             </div>
         </section>
 
         <!-- ============== CONTACT ============== -->
-        <section id="contact" class="py-16 md:py-24 bg-slate-100">
+        <section id="contact" class="py-16 md:py-24 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
 
-                    <div class="lg:col-span-5 space-y-6 reveal reveal-left">
+                    <div class="lg:col-span-5 space-y-7 reveal">
                         <div>
-                            <h2 class="text-xs uppercase tracking-widest text-teal-700 font-bold mb-2">Πρόσβαση & Επικοινωνία</h2>
-                            <h3 class="text-3xl font-serif text-navy-900 font-semibold">Το Ιατρείο</h3>
-                            <div class="gold-divider left"></div>
+                            <p class="text-[11px] uppercase tracking-[0.2em] text-teal-700 font-semibold mb-3">Πρόσβαση & Επικοινωνία</p>
+                            <h2 class="text-3xl font-serif text-navy-900 font-semibold">Το Ιατρείο</h2>
+                            <div class="gold-line left"></div>
                         </div>
 
-                        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-5">
-                            <div class="flex items-start space-x-4">
-                                <div class="w-10 h-10 rounded-lg bg-navy-900 text-gold-500 flex items-center justify-center shrink-0">
-                                    <i class="fa-solid fa-location-dot"></i>
-                                </div>
+                        <div class="border border-slate-200 rounded-sm divide-y divide-slate-100">
+                            <div class="flex items-start gap-4 p-5">
+                                <i class="fa-solid fa-location-dot text-navy-900 mt-1 w-4 text-center"></i>
                                 <div>
-                                    <strong class="block text-navy-900 text-sm">Διεύθυνση</strong>
+                                    <strong class="block text-navy-900 text-sm font-semibold mb-1">Διεύθυνση</strong>
                                     <p class="text-sm text-slate-600">Διογένους 23, Κάτω Τούμπα, Τ.Κ. 544 53, Θεσσαλονίκη</p>
                                 </div>
                             </div>
-
-                            <div class="flex items-start space-x-4">
-                                <div class="w-10 h-10 rounded-lg bg-navy-900 text-gold-500 flex items-center justify-center shrink-0">
-                                    <i class="fa-solid fa-phone"></i>
-                                </div>
+                            <div class="flex items-start gap-4 p-5">
+                                <i class="fa-solid fa-phone text-navy-900 mt-1 w-4 text-center"></i>
                                 <div>
-                                    <strong class="block text-navy-900 text-sm">Τηλέφωνο Επικοινωνίας</strong>
-                                    <a href="tel:6983285095" class="text-sm font-semibold text-navy-900 hover:underline">698 328 5095</a>
+                                    <strong class="block text-navy-900 text-sm font-semibold mb-1">Τηλέφωνο</strong>
+                                    <a href="tel:6983285095" class="text-sm text-navy-900 font-semibold hover:underline">698 328 5095</a>
                                 </div>
                             </div>
-
-                            <div class="flex items-start space-x-4">
-                                <div class="w-10 h-10 rounded-lg bg-navy-900 text-gold-500 flex items-center justify-center shrink-0">
-                                    <i class="fa-solid fa-clock"></i>
-                                </div>
+                            <div class="flex items-start gap-4 p-5">
+                                <i class="fa-solid fa-clock text-navy-900 mt-1 w-4 text-center"></i>
                                 <div>
-                                    <strong class="block text-navy-900 text-sm">Ωράριο Λειτουργίας</strong>
-                                    <p class="text-sm text-slate-600">
-                                        Δευτέρα έως Παρασκευή: Κατόπιν Ραντεβού<br>
-                                        <span class="text-xs text-slate-500">Δυνατότητα εξυπηρέτησης επειγόντων περιστατικών.</span>
-                                    </p>
+                                    <strong class="block text-navy-900 text-sm font-semibold mb-1">Ωράριο</strong>
+                                    <p class="text-sm text-slate-600">Δευτέρα – Παρασκευή, κατόπιν ραντεβού</p>
+                                    <p class="text-xs text-slate-500 mt-1">Δυνατότητα εξυπηρέτησης επειγόντων περιστατικών.</p>
                                 </div>
                             </div>
                         </div>
 
-                        <a href="tel:6983285095" class="btn btn-navy w-full py-3.5">
-                            <i class="fa-solid fa-phone mr-2 text-gold-500"></i>
+                        <a href="tel:6983285095" class="btn btn-navy w-full py-3.5 text-[15px]">
+                            <i class="fa-solid fa-phone mr-2.5 text-gold-500 text-xs"></i>
                             <span>Άμεση Κλήση: 698 328 5095</span>
                         </a>
                     </div>
 
-                    <div class="lg:col-span-7 flex flex-col reveal reveal-right">
-                        <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm flex-1 flex flex-col">
-                            <div class="flex justify-between items-center mb-3 px-2">
-                                <span class="font-serif font-bold text-navy-900 text-sm">Χάρτης Τούμπας Θεσσαλονίκης</span>
+                    <div class="lg:col-span-7 flex flex-col reveal">
+                        <div class="border border-slate-200 rounded-sm flex-1 flex flex-col overflow-hidden">
+                            <div class="flex justify-between items-center px-5 py-4 border-b border-slate-100">
+                                <span class="font-serif font-semibold text-navy-900 text-sm">Χάρτης Τούμπας Θεσσαλονίκης</span>
                                 <a href="https://www.google.com/maps/search/?api=1&query=Διογένους+23+Κάτω+Τούμπα+Θεσσαλονίκη"
                                    target="_blank" rel="noopener noreferrer"
-                                   class="text-xs font-semibold text-teal-700 hover:underline">
-                                    Άνοιγμα στο Google Maps <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                                   class="text-xs font-medium text-teal-700 hover:underline">
+                                    Άνοιγμα στο Google Maps <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[9px]"></i>
                                 </a>
                             </div>
-                            <div class="w-full h-[360px] bg-slate-200 rounded-lg overflow-hidden">
+                            <div class="w-full flex-1 min-h-[360px] bg-slate-100">
                                 <iframe
                                     title="Χάρτης Ιατρείου Διογένους 23 Τούμπα"
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3028.528!2d22.964!3d40.615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a838e0a1234567%3A0x123456789abcdef!2sDiogenous+23%2C+Thessaloniki+544+53!5e0!3m2!1sen!2sgr!4v1600000000000!5m2!1sen!2sgr"
@@ -928,39 +848,33 @@
         </section>
     </main>
 
-    <!-- ============== FOOTER ============== -->
-    <footer class="bg-navy-950 text-slate-400 py-10 border-t border-navy-900">
+    <!-- Footer -->
+    <footer class="bg-navy-950 text-slate-400 py-12 border-t border-navy-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center border-b border-navy-900 pb-8 gap-4">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center pb-8 gap-6 border-b border-navy-900">
                 <div>
-                    <p class="font-serif text-2xl font-bold text-white">Δρ. Ιωάννης Κούσλης</p>
-                    <p class="text-xs text-teal-400 mt-1 uppercase tracking-wider font-semibold">Ειδικός Γενικός - Οικογενειακός Ιατρός | MD, MSc</p>
-                    <p class="text-xs text-slate-400 mt-1">Διογένους 23, Κάτω Τούμπα, Θεσσαλονίκη (Τ.Κ. 544 53) | Τηλ: 698 328 5095</p>
+                    <p class="font-serif text-xl font-semibold text-white">Δρ. Ιωάννης Κούσλης</p>
+                    <p class="text-[11px] text-teal-400 mt-1.5 uppercase tracking-[0.18em] font-medium">Ειδικός Γενικός – Οικογενειακός Ιατρός · MD, MSc</p>
+                    <p class="text-xs text-slate-500 mt-2">Διογένους 23, Κάτω Τούμπα, Θεσσαλονίκη (Τ.Κ. 544 53) · Τηλ: 698 328 5095</p>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <a href="tel:6983285095" class="btn btn-navy px-5 py-2.5 text-xs font-semibold">
-                        <i class="fa-solid fa-phone mr-1.5 text-gold-500"></i> <span>698 328 5095</span>
-                    </a>
-                </div>
+                <a href="tel:6983285095" class="btn btn-navy px-5 py-2.5 text-xs">
+                    <i class="fa-solid fa-phone mr-2 text-gold-500 text-[10px]"></i> <span>698 328 5095</span>
+                </a>
             </div>
-
             <div class="pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 space-y-2 sm:space-y-0">
                 <p>&copy; 2026 Δρ. Ιωάννης Κούσλης. Όλα τα δικαιώματα διατηρούνται.</p>
-                <p>Ιατρική Ενημερωτική Ιστοσελίδα | Συμβεβλημένος ΕΟΠΥΥ</p>
+                <p>Ιατρική Ενημερωτική Ιστοσελίδα · Συμβεβλημένος ΕΟΠΥΥ</p>
             </div>
         </div>
     </footer>
 
-    <!-- Back to top -->
     <button id="back-top" aria-label="Επιστροφή στην κορυφή">
-        <i class="fa-solid fa-arrow-up"></i>
+        <i class="fa-solid fa-arrow-up text-sm"></i>
     </button>
 
-    <!-- ============== SCRIPTS ============== -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-
-            /* ---------- Mobile Menu ---------- */
+            /* Mobile menu */
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
             const menuIcon = mobileMenuBtn.querySelector('i');
@@ -986,7 +900,7 @@
                 link.addEventListener('click', () => { if (menuOpen) toggleMenu(); });
             });
 
-            /* ---------- IntersectionObserver Reveal ---------- */
+            /* Reveal */
             const revealEls = document.querySelectorAll('.reveal, .stagger');
             const io = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -995,11 +909,10 @@
                         io.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
-
+            }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
             revealEls.forEach(el => io.observe(el));
 
-            /* ---------- Scroll Progress + Back to Top (throttled via rAF) ---------- */
+            /* Scroll progress + back to top */
             const progress = document.getElementById('scroll-progress');
             const backTop = document.getElementById('back-top');
             let ticking = false;
@@ -1009,11 +922,8 @@
                 const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
                 const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
                 progress.style.width = pct + '%';
-                if (scrollTop > 500) {
-                    backTop.classList.add('show');
-                } else {
-                    backTop.classList.remove('show');
-                }
+                if (scrollTop > 500) backTop.classList.add('show');
+                else backTop.classList.remove('show');
                 ticking = false;
             }
 
@@ -1028,7 +938,7 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
 
-            /* ---------- Smooth anchor scroll with offset for sticky header ---------- */
+            /* Smooth anchors with offset */
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     const href = this.getAttribute('href');
@@ -1036,8 +946,7 @@
                         const target = document.querySelector(href);
                         if (target) {
                             e.preventDefault();
-                            const offset = 80;
-                            const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                            const y = target.getBoundingClientRect().top + window.pageYOffset - 80;
                             window.scrollTo({ top: y, behavior: 'smooth' });
                         }
                     }
