@@ -18,16 +18,13 @@
   --ink:#0E0E0E;
   --ink-2:#3D3D3D;
   --gray:#737373;
-  --gray-2:#A3A3A3;
   --line:#E5E5E5;
   --line-2:#CFCFCF;
   --bg:#FFFFFF;
   --bg-alt:#F6F6F4;
   --accent:#122A3F;
-
   --sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --serif: 'Noto Serif Display', Georgia, serif;
-
   --pad: 22px;
   --max: 1240px;
 }
@@ -35,7 +32,6 @@
 
 *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
 html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; text-size-adjust:100%; }
-
 body{
   font-family: var(--sans);
   font-size: 16px;
@@ -51,9 +47,6 @@ img{ max-width:100%; display:block; height:auto; }
 a{ color:inherit; text-decoration:none; }
 button{ font:inherit; border:0; background:none; cursor:pointer; color:inherit; }
 
-/* ══════════════════════════════════════════════════════════
-   LAYOUT
-   ══════════════════════════════════════════════════════════ */
 .wrap{
   max-width: var(--max);
   margin: 0 auto;
@@ -63,9 +56,6 @@ button{ font:inherit; border:0; background:none; cursor:pointer; color:inherit; 
 section{ padding: clamp(64px, 8.5vw, 128px) 0; }
 .cv{ content-visibility:auto; contain-intrinsic-size: 1px 900px; }
 
-/* ══════════════════════════════════════════════════════════
-   TYPOGRAPHY
-   ══════════════════════════════════════════════════════════ */
 h1,h2,h3,h4{
   font-family: var(--sans);
   font-weight: 500;
@@ -86,7 +76,6 @@ p{ color: var(--ink-2); }
   color: var(--gray);
 }
 
-/* Section head — numbered, editorial */
 .sec-head{
   display: grid;
   grid-template-columns: 1fr;
@@ -102,11 +91,7 @@ p{ color: var(--ink-2); }
     align-items: start;
   }
 }
-.sec-head .label{
-  display: flex;
-  gap: 16px;
-  padding-top: 8px;
-}
+.sec-head .label{ display: flex; gap: 16px; padding-top: 8px; }
 .sec-head .label strong{ color: var(--ink); font-weight: 500; }
 .sec-head h2{ max-width: 22ch; }
 .sec-head .desc{
@@ -117,9 +102,6 @@ p{ color: var(--ink-2); }
   max-width: 56ch;
 }
 
-/* ══════════════════════════════════════════════════════════
-   BUTTONS — solid, sharp, no radius, no shadow
-   ══════════════════════════════════════════════════════════ */
 .btn{
   display: inline-flex;
   align-items: center;
@@ -138,17 +120,12 @@ p{ color: var(--ink-2); }
 }
 .btn .arr{ display:inline-block; transition: transform .25s ease; }
 .btn:hover .arr{ transform: translateX(4px); }
-
 .btn-primary{ background: var(--accent); border-color: var(--accent); color: #fff; }
 .btn-primary:hover{ background: var(--ink); border-color: var(--ink); }
-
 .btn-ghost{ background: transparent; color: var(--ink); }
 .btn-ghost:hover{ background: var(--ink); color: #fff; }
-
-.btn-sm{ padding: 11px 18px; font-size: 11px; }
 .btn-block{ width: 100%; }
 
-/* Text link */
 .text-link{
   display: inline-flex;
   align-items: center;
@@ -164,9 +141,7 @@ p{ color: var(--ink-2); }
 }
 .text-link:hover{ color: var(--gray); border-color: var(--gray); gap: 14px; }
 
-/* ══════════════════════════════════════════════════════════
-   TOPBAR
-   ══════════════════════════════════════════════════════════ */
+/* TOPBAR */
 .topbar{
   background: var(--ink);
   color: rgba(255,255,255,.65);
@@ -187,9 +162,7 @@ p{ color: var(--ink-2); }
 .topbar .sep{ color: rgba(255,255,255,.2); margin: 0 12px; }
 .topbar .eopyy{ color: rgba(255,255,255,.85); }
 
-/* ══════════════════════════════════════════════════════════
-   HEADER
-   ══════════════════════════════════════════════════════════ */
+/* HEADER */
 header.site{
   position: sticky;
   top: 0;
@@ -204,12 +177,7 @@ header.site{
   justify-content: space-between;
   gap: 24px;
 }
-.brand{
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  line-height: 1.15;
-}
+.brand{ display: flex; flex-direction: column; gap: 3px; line-height: 1.15; }
 .brand-name{
   font-size: 15px;
   font-weight: 500;
@@ -225,7 +193,6 @@ header.site{
   color: var(--gray);
   white-space: nowrap;
 }
-
 nav.main{ display: none; }
 @media (min-width: 1000px){
   nav.main{ display: flex; align-items: center; gap: 30px; }
@@ -235,10 +202,8 @@ nav.main a{
   color: var(--ink-2);
   letter-spacing: .005em;
   transition: color .18s ease;
-  position: relative;
 }
 nav.main a:hover{ color: var(--ink); }
-
 .head-phone{
   display: none;
   font-size: 13.5px;
@@ -251,7 +216,6 @@ nav.main a:hover{ color: var(--ink); }
 }
 .head-phone:hover{ border-color: var(--ink); }
 @media (min-width: 1000px){ .head-phone{ display: inline-block; } }
-
 .burger{
   display: flex;
   align-items: center;
@@ -272,9 +236,7 @@ nav.main a:hover{ color: var(--ink); }
 .burger span::before{ position:absolute; top:-6px; left:0; }
 .burger span::after{ position:absolute; top:6px; left:0; }
 
-/* ══════════════════════════════════════════════════════════
-   MOBILE PANEL
-   ══════════════════════════════════════════════════════════ */
+/* MOBILE PANEL */
 .mpanel{
   position: fixed;
   inset: 0;
@@ -296,10 +258,7 @@ nav.main a:hover{ color: var(--ink); }
   border-bottom: 1px solid var(--line);
   margin-bottom: 12px;
 }
-.mpanel nav{
-  display: flex;
-  flex-direction: column;
-}
+.mpanel nav{ display: flex; flex-direction: column; }
 .mpanel nav a{
   font-size: 1.35rem;
   font-weight: 500;
@@ -311,9 +270,7 @@ nav.main a:hover{ color: var(--ink); }
 .mpanel nav a:last-child{ border-bottom: none; }
 .mpanel-cta{ margin-top: auto; padding-top: 32px; }
 
-/* ══════════════════════════════════════════════════════════
-   HERO
-   ══════════════════════════════════════════════════════════ */
+/* HERO */
 .hero{
   padding-top: clamp(56px, 8vw, 112px);
   padding-bottom: clamp(72px, 10vw, 132px);
@@ -328,14 +285,8 @@ nav.main a:hover{ color: var(--ink); }
 @media (min-width: 900px){
   .hero-grid{ grid-template-columns: 1.2fr .8fr; gap: 84px; align-items: center; }
 }
-
 .hero .label{ display:block; margin-bottom: 26px; }
-
-.hero h1{
-  margin-bottom: 30px;
-  max-width: 17ch;
-}
-
+.hero h1{ margin-bottom: 30px; max-width: 17ch; }
 .hero-lede{
   font-size: 15.5px;
   line-height: 1.7;
@@ -344,7 +295,6 @@ nav.main a:hover{ color: var(--ink); }
   margin-bottom: 38px;
 }
 .hero-lede strong{ color: var(--ink); font-weight: 500; }
-
 .hero-actions{
   display: flex;
   flex-direction: column;
@@ -354,7 +304,6 @@ nav.main a:hover{ color: var(--ink); }
 @media (min-width: 480px){
   .hero-actions{ flex-direction: row; gap: 12px; }
 }
-
 .hero-creds{
   border-top: 1px solid var(--line);
   display: grid;
@@ -381,18 +330,9 @@ nav.main a:hover{ color: var(--ink); }
   letter-spacing: .14em;
   color: var(--gray);
 }
-.cred-t{
-  font-size: 13.5px;
-  line-height: 1.5;
-  color: var(--ink-2);
-}
+.cred-t{ font-size: 13.5px; line-height: 1.5; color: var(--ink-2); }
 
-/* Portrait */
-.portrait img{
-  width: 100%;
-  aspect-ratio: 4/5;
-  object-fit: cover;
-}
+.portrait img{ width: 100%; aspect-ratio: 4/5; object-fit: cover; }
 .portrait-caption{
   margin-top: 18px;
   padding-top: 14px;
@@ -417,23 +357,11 @@ nav.main a:hover{ color: var(--ink); }
   font-style: italic;
 }
 
-/* ══════════════════════════════════════════════════════════
-   INFO STRIP
-   ══════════════════════════════════════════════════════════ */
-.info{
-  border-bottom: 1px solid var(--line);
-}
-.info-grid{
-  display: grid;
-  grid-template-columns: 1fr;
-}
-@media (min-width: 720px){
-  .info-grid{ grid-template-columns: repeat(4, 1fr); }
-}
-.info-cell{
-  padding: 30px 0;
-  border-bottom: 1px solid var(--line);
-}
+/* INFO STRIP */
+.info{ border-bottom: 1px solid var(--line); }
+.info-grid{ display: grid; grid-template-columns: 1fr; }
+@media (min-width: 720px){ .info-grid{ grid-template-columns: repeat(4, 1fr); } }
+.info-cell{ padding: 30px 0; border-bottom: 1px solid var(--line); }
 @media (min-width: 720px){
   .info-cell{
     padding: 34px 28px;
@@ -451,32 +379,15 @@ nav.main a:hover{ color: var(--ink); }
   font-weight: 500;
   margin-bottom: 10px;
 }
-.info-val{
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--ink);
-  line-height: 1.35;
-}
+.info-val{ font-size: 15px; font-weight: 500; color: var(--ink); line-height: 1.35; }
 .info-val a:hover{ color: var(--gray); }
-.info-sub{
-  font-size: 12.5px;
-  color: var(--gray);
-  margin-top: 6px;
-  line-height: 1.5;
-}
+.info-sub{ font-size: 12.5px; color: var(--gray); margin-top: 6px; line-height: 1.5; }
 
-/* ══════════════════════════════════════════════════════════
-   ABOUT
-   ══════════════════════════════════════════════════════════ */
-.about-grid{
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 56px;
-}
+/* ABOUT */
+.about-grid{ display: grid; grid-template-columns: 1fr; gap: 56px; }
 @media (min-width: 960px){
   .about-grid{ grid-template-columns: 1.4fr .85fr; gap: 96px; }
 }
-
 .pull{
   font-family: var(--serif);
   font-style: italic;
@@ -490,7 +401,6 @@ nav.main a:hover{ color: var(--ink); }
   margin-bottom: 36px;
   max-width: 46ch;
 }
-
 .about-body p{
   font-size: 15px;
   line-height: 1.75;
@@ -500,7 +410,6 @@ nav.main a:hover{ color: var(--ink); }
 }
 .about-body p:last-child{ margin-bottom: 0; }
 .about-body strong{ color: var(--ink); font-weight: 500; }
-
 .cv-list{ display: flex; flex-direction: column; }
 .cv-item{
   display: grid;
@@ -526,59 +435,87 @@ nav.main a:hover{ color: var(--ink); }
   margin-bottom: 4px;
   letter-spacing: -.005em;
 }
-.cv-s{
-  font-size: 13px;
-  color: var(--gray);
-  line-height: 1.5;
-}
+.cv-s{ font-size: 13px; color: var(--gray); line-height: 1.5; }
 
-/* ══════════════════════════════════════════════════════════
-   SERVICES
-   ══════════════════════════════════════════════════════════ */
+/* SERVICES */
 .services{
   background: var(--bg-alt);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
-.svc-grid{
+
+.svc-cats{ display: flex; flex-direction: column; }
+
+.svc-cat{
   display: grid;
   grid-template-columns: 1fr;
-}
-@media (min-width: 820px){
-  .svc-grid{ grid-template-columns: 1fr 1fr; column-gap: 72px; }
-}
-.svc{
-  display: grid;
-  grid-template-columns: 44px 1fr;
   gap: 20px;
-  padding: 30px 0 34px;
+  padding: 36px 0 40px;
   border-top: 1px solid var(--line-2);
+  align-items: start;
+}
+.svc-cat:last-child{ border-bottom: 1px solid var(--line-2); }
+@media (min-width: 820px){
+  .svc-cat{
+    grid-template-columns: 300px 1fr;
+    gap: 72px;
+    padding: 40px 0 44px;
+  }
+}
+
+.svc-cat-head{
+  display: flex;
+  gap: 18px;
   align-items: baseline;
 }
-.svc-n{
+.svc-cat-n{
   font-size: 10.5px;
   letter-spacing: .14em;
   color: var(--gray);
   font-weight: 500;
   padding-top: 4px;
+  flex-shrink: 0;
 }
-.svc h3{
-  font-size: 15.5px;
+.svc-cat-title{
+  font-size: 16.5px;
   font-weight: 500;
-  letter-spacing: -.005em;
+  letter-spacing: -.008em;
   color: var(--ink);
   line-height: 1.35;
-  margin-bottom: 10px;
-}
-.svc p{
-  font-size: 13.5px;
-  line-height: 1.65;
-  color: var(--ink-2);
+  font-family: var(--sans);
 }
 
-/* ══════════════════════════════════════════════════════════
-   TECHNOLOGY
-   ══════════════════════════════════════════════════════════ */
+.svc-cat-items{
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px 40px;
+  padding: 0;
+  margin: 0;
+}
+@media (min-width: 1000px){
+  .svc-cat-items{
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.svc-cat-items li{
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  padding-left: 22px;
+  position: relative;
+}
+.svc-cat-items li::before{
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  width: 10px;
+  height: 1px;
+  background: var(--gray);
+}
+
+/* TECHNOLOGY */
 .tech{
   background: var(--ink);
   color: #fff;
@@ -589,29 +526,23 @@ nav.main a:hover{ color: var(--ink); }
 .tech .label strong{ color: #fff; font-weight: 500; }
 .tech h2{ color: #fff; }
 .tech .desc{ color: rgba(255,255,255,.55); }
-
-.tech-grid{
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 40px;
-}
+.tech-grid{ display: grid; grid-template-columns: 1fr; gap: 40px; }
 @media (min-width: 800px){
   .tech-grid{ grid-template-columns: repeat(3, 1fr); gap: 44px; }
 }
 .tech-fig{ display: flex; flex-direction: column; gap: 20px; }
-.tech-img{
-  overflow: hidden;
-  aspect-ratio: 4/5;
-  background: #1A1A1A;
-}
+.tech-img{ overflow: hidden; aspect-ratio: 4/5; background: #1A1A1A; }
 .tech-img img{
   width: 100%; height: 100%;
   object-fit: cover;
-  transition: transform .9s cubic-bezier(.2,.8,.2,1);
+  filter: saturate(0.85) contrast(1.08) brightness(0.92);
+  transition: transform .9s cubic-bezier(.2,.8,.2,1), filter .6s ease;
   will-change: transform;
 }
-.tech-fig:hover .tech-img img{ transform: scale(1.03); }
-
+.tech-fig:hover .tech-img img{
+  transform: scale(1.03);
+  filter: saturate(1) contrast(1.12) brightness(1);
+}
 .tech-n{
   font-size: 10.5px;
   letter-spacing: .16em;
@@ -629,15 +560,9 @@ nav.main a:hover{ color: var(--ink); }
   line-height: 1.35;
   margin-bottom: 10px;
 }
-.tech-fig p{
-  font-size: 13.5px;
-  color: rgba(255,255,255,.55);
-  line-height: 1.65;
-}
+.tech-fig p{ font-size: 13.5px; color: rgba(255,255,255,.55); line-height: 1.65; }
 
-/* ══════════════════════════════════════════════════════════
-   CERTIFICATIONS
-   ══════════════════════════════════════════════════════════ */
+/* CERTIFICATIONS */
 .cert-list{ display: flex; flex-direction: column; }
 .cert-item{
   display: grid;
@@ -666,12 +591,7 @@ nav.main a:hover{ color: var(--ink); }
   line-height: 1.35;
   margin-bottom: 6px;
 }
-.cert-item p{
-  font-size: 13.5px;
-  line-height: 1.65;
-  color: var(--ink-2);
-  max-width: 62ch;
-}
+.cert-item p{ font-size: 13.5px; line-height: 1.65; color: var(--ink-2); max-width: 62ch; }
 .cert-side{
   font-size: 10.5px;
   letter-spacing: .16em;
@@ -681,18 +601,39 @@ nav.main a:hover{ color: var(--ink); }
   text-align: right;
 }
 
-/* ══════════════════════════════════════════════════════════
-   REVIEWS
-   ══════════════════════════════════════════════════════════ */
+/* REVIEWS */
 .reviews{
   background: var(--bg-alt);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
-.rev-grid{
-  display: grid;
-  grid-template-columns: 1fr;
+.rating{
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 28px 0;
+  border-top: 1px solid var(--line-2);
+  margin-bottom: 8px;
 }
+.rating-score{
+  font-size: clamp(2.8rem, 6vw, 4rem);
+  font-weight: 500;
+  letter-spacing: -.03em;
+  line-height: 1;
+  color: var(--ink);
+}
+.rating-stars{
+  font-size: 16px;
+  letter-spacing: 4px;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.rating-meta{
+  font-size: 11.5px;
+  letter-spacing: .06em;
+  color: var(--gray);
+}
+.rev-grid{ display: grid; grid-template-columns: 1fr; }
 @media (min-width: 900px){
   .rev-grid{ grid-template-columns: repeat(3, 1fr); }
 }
@@ -711,11 +652,7 @@ nav.main a:hover{ color: var(--ink); }
   .rev:last-child{ border-right: none; padding-right: 0; }
   .rev:nth-child(2), .rev:nth-child(3){ padding-left: 32px; }
 }
-.rev-stars{
-  font-size: 11.5px;
-  letter-spacing: 3px;
-  color: var(--ink);
-}
+.rev-stars{ font-size: 11.5px; letter-spacing: 3px; color: var(--ink); }
 .rev-text{
   font-size: 14.5px;
   line-height: 1.7;
@@ -747,23 +684,33 @@ nav.main a:hover{ color: var(--ink); }
 }
 .rev-cta{
   margin-top: 48px;
-  padding-top: 32px;
+  padding-top: 40px;
   border-top: 1px solid var(--line-2);
   text-align: center;
 }
-
-/* ══════════════════════════════════════════════════════════
-   CONTACT
-   ══════════════════════════════════════════════════════════ */
-.contact-grid{
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 48px;
+.btn-reviews{ padding: 18px 34px; font-size: 12.5px; }
+.rev-cta-note{
+  margin-top: 16px;
+  font-size: 11px;
+  letter-spacing: .05em;
+  color: var(--gray);
 }
+@media (max-width: 520px){
+  .rating{ gap: 20px; padding: 22px 0; }
+  .btn-reviews{
+    padding: 16px 20px;
+    font-size: 11.5px;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.4;
+  }
+}
+
+/* CONTACT */
+.contact-grid{ display: grid; grid-template-columns: 1fr; gap: 48px; }
 @media (min-width: 900px){
   .contact-grid{ grid-template-columns: .85fr 1.15fr; gap: 80px; align-items: start; }
 }
-
 .contact-list{ display: flex; flex-direction: column; }
 .contact-row{
   display: grid;
@@ -788,13 +735,7 @@ nav.main a:hover{ color: var(--ink); }
   letter-spacing: -.005em;
 }
 .contact-val a:hover{ color: var(--gray); }
-.contact-sub{
-  font-size: 12.5px;
-  color: var(--gray);
-  line-height: 1.55;
-  margin-top: 2px;
-}
-
+.contact-sub{ font-size: 12.5px; color: var(--gray); line-height: 1.55; margin-top: 2px; }
 .map-wrap{
   width: 100%;
   aspect-ratio: 4/3;
@@ -831,9 +772,7 @@ nav.main a:hover{ color: var(--ink); }
 }
 .map-meta a:hover{ color: var(--gray); border-color: var(--gray); }
 
-/* ══════════════════════════════════════════════════════════
-   FOOTER
-   ══════════════════════════════════════════════════════════ */
+/* FOOTER */
 footer.site{
   background: var(--ink);
   color: rgba(255,255,255,.6);
@@ -902,9 +841,7 @@ footer.site{
   .foot-bottom{ flex-direction: row; justify-content: space-between; align-items: center; }
 }
 
-/* ══════════════════════════════════════════════════════════
-   UTILITIES
-   ══════════════════════════════════════════════════════════ */
+/* UTILITIES */
 .reveal{
   opacity: 0;
   transform: translate3d(0, 14px, 0);
@@ -912,7 +849,6 @@ footer.site{
   will-change: opacity, transform;
 }
 .reveal.in{ opacity: 1; transform: translate3d(0, 0, 0); }
-
 #progress{
   position: fixed;
   top: 0; left: 0;
@@ -938,7 +874,6 @@ footer.site{
   z-index: 90;
 }
 #top.show{ opacity: 1; visibility: visible; transform: translateY(0); }
-
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{
     animation-duration: .01ms !important;
@@ -954,7 +889,6 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
 
 <div id="progress"></div>
 
-<!-- ──────── TOPBAR ──────── -->
 <div class="topbar">
   <div class="wrap">
     <div>
@@ -966,14 +900,12 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
   </div>
 </div>
 
-<!-- ──────── HEADER ──────── -->
 <header class="site">
   <div class="wrap head-inner">
     <a href="#" class="brand" aria-label="Αρχική">
       <span class="brand-name">Δρ. Ιωάννης Κούσλης</span>
       <span class="brand-sub">Ειδικός Γενικός &amp; Οικογενειακός Ιατρός</span>
     </a>
-
     <nav class="main" aria-label="Κύρια πλοήγηση">
       <a href="#about">Ο Ιατρός</a>
       <a href="#services">Υπηρεσίες</a>
@@ -982,14 +914,11 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
       <a href="#reviews">Αξιολογήσεις</a>
       <a href="#contact">Επικοινωνία</a>
     </nav>
-
     <a href="tel:6983285095" class="head-phone">698 328 5095</a>
-
     <button class="burger" id="openMenu" aria-label="Άνοιγμα μενού"><span></span></button>
   </div>
 </header>
 
-<!-- ──────── MOBILE PANEL ──────── -->
 <div class="mpanel" id="mpanel" aria-hidden="true">
   <div class="mpanel-top">
     <span class="brand-name">Δρ. Ι. Κούσλης</span>
@@ -1010,20 +939,15 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
 
 <main>
 
-<!-- ════════════ HERO ════════════ -->
 <section class="hero">
   <div class="wrap">
     <div class="hero-grid">
-
       <div class="hero-content reveal">
         <span class="label">Ιδιωτικό Ιατρείο · Θεσσαλονίκη</span>
-
         <h1>Ολοκληρωμένη Πρωτοβάθμια Φροντίδα Υγείας &amp; Προληπτική Ιατρική.</h1>
-
         <p class="hero-lede">
           Ο <strong>Δρ. Ιωάννης Κούσλης</strong> παρέχει εξατομικευμένες ιατρικές υπηρεσίες στην Κάτω Τούμπα Θεσσαλονίκης — με έμφαση στην πρόληψη, τη διαχείριση χρόνιων νοσημάτων και την ηλεκτρονική συνταγογράφηση ΕΟΠΥΥ.
         </p>
-
         <div class="hero-actions">
           <a href="tel:6983285095" class="btn btn-primary">Ραντεβού · 698 328 5095</a>
           <a href="https://www.google.com/maps/search/?api=1&amp;query=Διογένους+23+Κάτω+Τούμπα+Θεσσαλονίκη"
@@ -1031,7 +955,6 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
             Οδηγίες Πρόσβασης <span class="arr">→</span>
           </a>
         </div>
-
         <div class="hero-creds">
           <div class="cred">
             <span class="cred-n">01</span>
@@ -1043,7 +966,6 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
           </div>
         </div>
       </div>
-
       <figure class="portrait reveal">
         <img src="herodr.jpg"
              alt="Δρ. Ιωάννης Κούσλης, Ειδικός Γενικός και Οικογενειακός Ιατρός"
@@ -1053,12 +975,10 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
           <span>Θεσσαλονίκη</span>
         </figcaption>
       </figure>
-
     </div>
   </div>
 </section>
 
-<!-- ════════════ INFO ════════════ -->
 <section class="info cv" style="padding:0;">
   <div class="wrap">
     <div class="info-grid">
@@ -1086,7 +1006,6 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
   </div>
 </section>
 
-<!-- ════════════ ABOUT ════════════ -->
 <section id="about" class="cv">
   <div class="wrap">
     <header class="sec-head reveal">
@@ -1095,20 +1014,15 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
         <h2>Σχετικά με τον Ιατρό</h2>
       </div>
     </header>
-
     <div class="about-grid">
       <div class="about-body reveal">
         <blockquote class="pull">
           «Η Γενική Ιατρική αποτελεί τον θεμέλιο λίθο της υγείας. Στόχος μου είναι η ολοκληρωμένη πρόληψη, η έγκυρη διάγνωση και η συνεχής υποστήριξη του ασθενούς με ανθρώπινη προσέγγιση.»
         </blockquote>
-
         <p>Ο <strong>Δρ. Ιωάννης Κούσλης (MD, MSc)</strong> είναι Ειδικός Γενικός &amp; Οικογενειακός Ιατρός με εκτεταμένη νοσοκομειακή και προνοσοκομειακή εμπειρία. Διατηρεί ιδιωτικό ιατρείο στην Κάτω Τούμπα Θεσσαλονίκης.</p>
-
         <p>Έχει ολοκληρώσει τις μεταπτυχιακές του σπουδές στο τμήμα Ιατρικής του Αριστοτελείου Πανεπιστημίου Θεσσαλονίκης με αντικείμενο «Υγεία &amp; Άσκηση». Παράλληλα, εκπαιδεύτηκε στο Καρδιολογικό Τμήμα του <strong>Ωνασείου Καρδιοχειρουργικού Κέντρου</strong>, αποκτώντας πολύτιμη κλινική εμπειρία στη διαχείριση καρδιολογικών συμβαμάτων και επειγόντων περιστατικών.</p>
-
         <p>Έχει υπηρετήσει σε τμήματα Εσωτερικής Παθολογίας και Επειγόντων Περιστατικών στο Γενικό Νοσοκομείο Βόλου και στο Γενικό Νοσοκομείο Φλώρινας, ενώ διαθέτει σημαντική εμπειρία στην Επείγουσα Ιατρική μέσω του ΕΚΑΒ. Είναι τακτικό μέλος του Ιατρικού Συλλόγου Θεσσαλονίκης.</p>
       </div>
-
       <div class="reveal">
         <div class="label" style="margin-bottom:22px; display:block;">Τίτλοι &amp; Προϋπηρεσία</div>
         <div class="cv-list">
@@ -1153,70 +1067,120 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
   </div>
 </section>
 
-<!-- ════════════ SERVICES ════════════ -->
 <section id="services" class="services cv">
   <div class="wrap">
     <header class="sec-head reveal">
       <div class="label"><strong>02</strong> Υπηρεσίες</div>
       <div>
         <h2>Παρεχόμενες Υπηρεσίες</h2>
-        <p class="desc">Εξατομικευμένη ιατρική φροντίδα για κάθε ηλικία, με έμφαση στην πρόληψη και τη συνέχεια της φροντίδας.</p>
+        <p class="desc">Ολοκληρωμένη πρωτοβάθμια φροντίδα για ενήλικες και ηλικιωμένους — από πρόληψη και συνταγογράφηση, έως διαχείριση χρόνιων νοσημάτων και επείγοντα περιστατικά.</p>
       </div>
     </header>
 
-    <div class="svc-grid">
-      <article class="svc reveal">
-        <span class="svc-n">01</span>
-        <div>
-          <h3>Ηλεκτρονική Συνταγογράφηση</h3>
-          <p>Έκδοση συνταγών ΕΟΠΥΥ (δίμηνη / τρίμηνη), εμβόλια, παραπεμπτικά διαγνωστικών και αιματολογικών εξετάσεων.</p>
+    <div class="svc-cats">
+
+      <article class="svc-cat reveal">
+        <div class="svc-cat-head">
+          <span class="svc-cat-n">01</span>
+          <h3 class="svc-cat-title">Επισκέψεις &amp; Συμβουλευτική</h3>
         </div>
+        <ul class="svc-cat-items">
+          <li>Απλή επίσκεψη</li>
+          <li>Επίσκεψη μέσω βιντεοκλήσης</li>
+          <li>Κατ' οίκον επίσκεψη</li>
+          <li>Οικογενειακός γιατρός</li>
+          <li>Ταξιδιωτική ιατρική</li>
+          <li>Ειδικό κόστος για ΑμεΑ, ανέργους &amp; φοιτητές</li>
+        </ul>
       </article>
 
-      <article class="svc reveal">
-        <span class="svc-n">02</span>
-        <div>
-          <h3>Διαχείριση Χρόνιων Νοσημάτων</h3>
-          <p>Συστηματική παρακολούθηση και ρύθμιση αρτηριακής υπέρτασης, σακχαρώδους διαβήτη, δυσλιπιδαιμίας και οστεοπόρωσης.</p>
+      <article class="svc-cat reveal">
+        <div class="svc-cat-head">
+          <span class="svc-cat-n">02</span>
+          <h3 class="svc-cat-title">Συνταγογράφηση &amp; Παραπεμπτικά</h3>
         </div>
+        <ul class="svc-cat-items">
+          <li>Ηλεκτρονική συνταγογράφηση φαρμάκων μέσω ΕΟΠΥΥ</li>
+          <li>Ηλεκτρονική συνταγογράφηση μέσω βιντεοκλήσης</li>
+          <li>Ηλεκτρονική συνταγογράφηση εμβολίου γρίπης</li>
+          <li>Συνταγογράφηση PrEP αντιρετροϊκών φαρμάκων</li>
+          <li>Έκδοση παραπεμπτικών ΕΟΠΥΥ</li>
+        </ul>
       </article>
 
-      <article class="svc reveal">
-        <span class="svc-n">03</span>
-        <div>
-          <h3>Προληπτικός Έλεγχος &amp; ΗΚΓ</h3>
-          <p>Διενέργεια ηλεκτροκαρδιογραφήματος, μέτρηση αρτηριακής πίεσης, προληπτικός έλεγχος (check-up) και αξιολόγηση εξετάσεων.</p>
+      <article class="svc-cat reveal">
+        <div class="svc-cat-head">
+          <span class="svc-cat-n">03</span>
+          <h3 class="svc-cat-title">Πιστοποιητικά &amp; Βεβαιώσεις</h3>
         </div>
+        <ul class="svc-cat-items">
+          <li>Βεβαίωση για δίπλωμα οδήγησης</li>
+          <li>Βεβαίωση αναρρωτικής άδειας</li>
+          <li>Πιστοποιητικά &amp; ιατρικές βεβαιώσεις</li>
+        </ul>
       </article>
 
-      <article class="svc reveal">
-        <span class="svc-n">04</span>
-        <div>
-          <h3>Πιστοποιητικά Υγείας</h3>
-          <p>Έκδοση ιατρικών βεβαιώσεων και πιστοποιητικών για εργασία, δίπλωμα οδήγησης, αθλητικές δραστηριότητες και φοιτητές.</p>
+      <article class="svc-cat reveal">
+        <div class="svc-cat-head">
+          <span class="svc-cat-n">04</span>
+          <h3 class="svc-cat-title">Διαχείριση Χρόνιων Νοσημάτων</h3>
         </div>
+        <ul class="svc-cat-items">
+          <li>Διαχείριση χρόνιων παθήσεων</li>
+          <li>Αντιμετώπιση διαβήτη</li>
+          <li>Αρτηριακή υπέρταση</li>
+          <li>Παρακολούθηση χοληστερίνης</li>
+          <li>Αντιμετώπιση παχυσαρκίας</li>
+          <li>Θεραπεία ευερέθιστου εντέρου</li>
+          <li>Άγχος &amp; κατάθλιψη</li>
+          <li>Αντιμετώπιση HIV/AIDS</li>
+        </ul>
       </article>
 
-      <article class="svc reveal">
-        <span class="svc-n">05</span>
-        <div>
-          <h3>Φροντίδα Τραυμάτων</h3>
-          <p>Καθαρισμός και συρραφή τραυμάτων, αλλαγή επιδέσμων, αντιμετώπιση λοιμώξεων και οξέων περιστατικών.</p>
+      <article class="svc-cat reveal">
+        <div class="svc-cat-head">
+          <span class="svc-cat-n">05</span>
+          <h3 class="svc-cat-title">Οξέα Περιστατικά &amp; Λοιμώξεις</h3>
         </div>
+        <ul class="svc-cat-items">
+          <li>Αντιμετώπιση επειγόντων περιστατικών</li>
+          <li>Αντιμετώπιση βρογχίτιδας</li>
+          <li>Αντιμετώπιση ίωσης, γρίπης &amp; κρυολογήματος</li>
+        </ul>
       </article>
 
-      <article class="svc reveal">
-        <span class="svc-n">06</span>
-        <div>
-          <h3>Συμβουλευτική Υγείας &amp; Άσκησης</h3>
-          <p>Εξειδικευμένες συμβουλές για βελτίωση ποιότητας ζωής, διατροφή και άσκηση — βάσει του μεταπτυχιακού τίτλου MSc.</p>
+      <article class="svc-cat reveal">
+        <div class="svc-cat-head">
+          <span class="svc-cat-n">06</span>
+          <h3 class="svc-cat-title">Διαγνωστικές Εξετάσεις &amp; Έλεγχοι</h3>
         </div>
+        <ul class="svc-cat-items">
+          <li>Check up (προληπτικός έλεγχος)</li>
+          <li>Ηλεκτροκαρδιογράφημα</li>
+          <li>Σπιρομέτρηση</li>
+          <li>Holter ρυθμού</li>
+          <li>Ανάγνωση &amp; αξιολόγηση δερμοαντίδρασης Mantoux</li>
+          <li>Έλεγχος βιταμινών, ηλεκτρολυτών &amp; θυρεοειδούς</li>
+          <li>Έλεγχος φεριτίνης</li>
+          <li>Τεστ αντιγόνου COVID-19 (rapid test)</li>
+        </ul>
       </article>
+
+      <article class="svc-cat reveal">
+        <div class="svc-cat-head">
+          <span class="svc-cat-n">07</span>
+          <h3 class="svc-cat-title">Επεμβάσεις &amp; Εμβολιασμοί</h3>
+        </div>
+        <ul class="svc-cat-items">
+          <li>Περιποίηση &amp; συρραφή τραυμάτων</li>
+          <li>Εμβόλιο γρίπης</li>
+        </ul>
+      </article>
+
     </div>
   </div>
 </section>
 
-<!-- ════════════ TECHNOLOGY ════════════ -->
 <section id="technology" class="tech cv">
   <div class="wrap">
     <header class="sec-head reveal">
@@ -1226,12 +1190,11 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
         <p class="desc">Συνδυάζουμε την κλινική εμπειρία με σύγχρονα διαγνωστικά εργαλεία, για ακριβέστερη διάγνωση και στοχευμένη θεραπευτική προσέγγιση.</p>
       </div>
     </header>
-
     <div class="tech-grid">
       <figure class="tech-fig reveal">
         <div class="tech-img">
-          <img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?auto=format&amp;fit=crop&amp;w=800&amp;q=72"
-               alt="Ψηφιακή διάγνωση" loading="lazy" decoding="async">
+          <img src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?auto=format&amp;fit=crop&amp;w=1000&amp;q=85"
+               alt="Ψηφιακή διάγνωση — σύγχρονο χειρουργείο" loading="lazy" decoding="async">
         </div>
         <figcaption>
           <span class="tech-n">01 / Διάγνωση</span>
@@ -1239,11 +1202,10 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
           <p>Υποστηριζόμενη ανάλυση εξετάσεων για ακριβέστερη κλινική εικόνα και τεκμηριωμένες αποφάσεις.</p>
         </figcaption>
       </figure>
-
       <figure class="tech-fig reveal">
         <div class="tech-img">
-          <img src="https://images.unsplash.com/photo-1554475901-4538ddfbccc2?auto=format&amp;fit=crop&amp;w=800&amp;q=72"
-               alt="Βιοϊατρική ακρίβεια" loading="lazy" decoding="async">
+          <img src="https://images.unsplash.com/photo-1518152006812-edab29b069ac?auto=format&amp;fit=crop&amp;w=1000&amp;q=85"
+               alt="Βιοϊατρική ακρίβεια — κυτταρική ανάλυση" loading="lazy" decoding="async">
         </div>
         <figcaption>
           <span class="tech-n">02 / Βιοδείκτες</span>
@@ -1251,11 +1213,10 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
           <p>Προηγμένη ερμηνεία βιοδεικτών για εξατομικευμένη θεραπευτική προσέγγιση.</p>
         </figcaption>
       </figure>
-
       <figure class="tech-fig reveal">
         <div class="tech-img">
-          <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&amp;fit=crop&amp;w=800&amp;q=72"
-               alt="Καρδιομεταβολικό προφίλ" loading="lazy" decoding="async">
+          <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&amp;fit=crop&amp;w=1000&amp;q=85"
+               alt="Καρδιομεταβολικό προφίλ — εργαστηριακή ανάλυση" loading="lazy" decoding="async">
         </div>
         <figcaption>
           <span class="tech-n">03 / Καρδιολογία</span>
@@ -1267,7 +1228,6 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
   </div>
 </section>
 
-<!-- ════════════ CERTIFICATIONS ════════════ -->
 <section id="certifications" class="cv">
   <div class="wrap">
     <header class="sec-head reveal">
@@ -1277,7 +1237,6 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
         <p class="desc">Πιστοποιήσεις που διασφαλίζουν την εφαρμογή διεθνώς αναγνωρισμένων πρωτοκόλλων στη διαχείριση επειγόντων περιστατικών.</p>
       </div>
     </header>
-
     <div class="cert-list">
       <div class="cert-item reveal">
         <span class="cert-n">01</span>
@@ -1287,7 +1246,6 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
         </div>
         <span class="cert-side">ERC</span>
       </div>
-
       <div class="cert-item reveal">
         <span class="cert-n">02</span>
         <div>
@@ -1296,7 +1254,6 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
         </div>
         <span class="cert-side">ERC</span>
       </div>
-
       <div class="cert-item reveal">
         <span class="cert-n">03</span>
         <div>
@@ -1309,7 +1266,6 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
   </div>
 </section>
 
-<!-- ════════════ REVIEWS ════════════ -->
 <section id="reviews" class="reviews cv">
   <div class="wrap">
     <header class="sec-head reveal">
@@ -1320,6 +1276,14 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
       </div>
     </header>
 
+    <div class="rating reveal">
+      <div class="rating-score">5.0</div>
+      <div class="rating-detail">
+        <div class="rating-stars" aria-label="5 στα 5 αστέρια">★★★★★</div>
+        <div class="rating-meta">Βασισμένο σε αξιολογήσεις Google Maps</div>
+      </div>
+    </div>
+
     <div class="rev-grid">
       <article class="rev reveal">
         <div class="rev-stars">★★★★★</div>
@@ -1329,7 +1293,6 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
           <span class="rev-src">Google</span>
         </div>
       </article>
-
       <article class="rev reveal">
         <div class="rev-stars">★★★★★</div>
         <p class="rev-text">Πήγα για συνταγογράφηση και προληπτικό έλεγχο. Ο κ. Κούσλης αφιέρωσε χρόνο να εξετάσει τις εξετάσεις μου αναλυτικά. Ευγενέστατος και άρτιος επιστήμονας.</p>
@@ -1338,7 +1301,6 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
           <span class="rev-src">Google</span>
         </div>
       </article>
-
       <article class="rev reveal">
         <div class="rev-stars">★★★★★</div>
         <p class="rev-text">Πολύ καλή εμπειρία. Άμεση εξυπηρέτηση, χωρίς καθυστερήσεις στα ραντεβού. Σημαντική και η εμπειρία του από το Ωνάσειο. Τον συστήνω ανεπιφύλακτα.</p>
@@ -1350,15 +1312,16 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
     </div>
 
     <div class="rev-cta reveal">
-      <a href="https://www.google.com/maps/search/?api=1&amp;query=Διογένους+23+Κάτω+Τούμπα+Θεσσαλονίκη+Κούσλης+Ιωάννης"
-         target="_blank" rel="noopener noreferrer" class="text-link">
-        Όλες οι αξιολογήσεις στο Google Maps <span class="arr">→</span>
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=%CE%94%CF%81+%CE%99%CF%89%CE%AC%CE%BD%CE%BD%CE%B7%CF%82+%CE%9A%CE%BF%CF%8D%CF%83%CE%BB%CE%B7%CF%82+%CE%94%CE%B9%CE%BF%CE%B3%CE%AD%CE%BD%CE%BF%CF%85%CF%82+23+%CE%9A%CE%AC%CF%84%CF%89+%CE%A4%CE%BF%CF%8D%CE%BC%CF%80%CE%B1+%CE%98%CE%B5%CF%83%CF%83%CE%B1%CE%BB%CE%BF%CE%BD%CE%AF%CE%BA%CE%B7"
+         target="_blank" rel="noopener noreferrer"
+         class="btn btn-primary btn-reviews">
+        Δείτε τις ζωντανές αξιολογήσεις στο Google Maps <span class="arr">→</span>
       </a>
+      <p class="rev-cta-note">Ανοίγει σε νέα καρτέλα — σύνδεση με το προφίλ του ιατρείου στη Google</p>
     </div>
   </div>
 </section>
 
-<!-- ════════════ CONTACT ════════════ -->
 <section id="contact" class="cv">
   <div class="wrap">
     <header class="sec-head reveal">
@@ -1368,7 +1331,6 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
         <p class="desc">Διογένους 23, Κάτω Τούμπα Θεσσαλονίκης — λειτουργία κατόπιν ραντεβού, με δυνατότητα εξυπηρέτησης επειγόντων περιστατικών.</p>
       </div>
     </header>
-
     <div class="contact-grid">
       <div class="reveal">
         <div class="contact-list">
@@ -1377,37 +1339,33 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
             <div class="contact-val">Διογένους 23, Κάτω Τούμπα</div>
             <div class="contact-sub">Τ.Κ. 544 53, Θεσσαλονίκη</div>
           </div>
-
           <div class="contact-row">
             <div class="contact-lbl">Τηλέφωνο</div>
             <a class="contact-val" href="tel:6983285095">698 328 5095</a>
           </div>
-
           <div class="contact-row">
             <div class="contact-lbl">Ωράριο</div>
             <div class="contact-val">Δευτέρα – Παρασκευή</div>
             <div class="contact-sub">Κατόπιν ραντεβού. Δυνατότητα εξυπηρέτησης επειγόντων περιστατικών.</div>
           </div>
-
           <div class="contact-row">
             <div class="contact-lbl">Ταμείο</div>
             <div class="contact-val">Συμβεβλημένος με ΕΟΠΥΥ</div>
             <div class="contact-sub">Ηλεκτρονική συνταγογράφηση &amp; παραπεμπτικά.</div>
           </div>
         </div>
-
         <div style="margin-top:30px;">
           <a href="tel:6983285095" class="btn btn-primary btn-block">Άμεση Κλήση Ιατρείου</a>
         </div>
       </div>
-
       <div class="reveal">
         <div class="map-wrap">
           <iframe
             title="Χάρτης Ιατρείου — Διογένους 23, Κάτω Τούμπα"
-            src="https://www.google.com/maps?q=Διογένους+23,+Κάτω+Τούμπα,+Θεσσαλονίκη&amp;output=embed"
+            src="https://www.google.com/maps?q=%CE%94%CE%B9%CE%BF%CE%B3%CE%AD%CE%BD%CE%BF%CF%85%CF%82+23,+%CE%9A%CE%AC%CF%84%CF%89+%CE%A4%CE%BF%CF%8D%CE%BC%CF%80%CE%B1,+%CE%98%CE%B5%CF%83%CF%83%CE%B1%CE%BB%CE%BF%CE%BD%CE%AF%CE%BA%CE%B7+544+53&amp;z=17&amp;hl=el&amp;output=embed"
             loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen></iframe>
         </div>
         <div class="map-meta">
           <span>Διογένους 23 · Τ.Κ. 544 53</span>
@@ -1421,7 +1379,6 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
 
 </main>
 
-<!-- ════════════ FOOTER ════════════ -->
 <footer class="site">
   <div class="wrap">
     <div class="foot-top">
@@ -1430,7 +1387,6 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
         <span class="foot-sub">Ειδικός Γενικός &amp; Οικογενειακός Ιατρός · MD, MSc</span>
         <p class="foot-p">Ιδιωτικό ιατρείο στην Κάτω Τούμπα Θεσσαλονίκης. Πρωτοβάθμια φροντίδα, πρόληψη και συνταγογράφηση ΕΟΠΥΥ.</p>
       </div>
-
       <div>
         <div class="foot-h">Επικοινωνία</div>
         <div class="foot-list">
@@ -1439,7 +1395,6 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
           <span>Τ.Κ. 544 53, Θεσσαλονίκη</span>
         </div>
       </div>
-
       <div>
         <div class="foot-h">Πλοήγηση</div>
         <div class="foot-list">
@@ -1450,7 +1405,6 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
         </div>
       </div>
     </div>
-
     <div class="foot-bottom">
       <span>© 2026 Δρ. Ιωάννης Κούσλης · Όλα τα δικαιώματα διατηρούνται.</span>
       <span>Ιατρική ενημερωτική ιστοσελίδα · Συμβεβλημένος ΕΟΠΥΥ</span>
@@ -1464,7 +1418,6 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
 (function(){
   'use strict';
 
-  // Mobile panel
   var panel  = document.getElementById('mpanel');
   var openB  = document.getElementById('openMenu');
   var closeB = document.getElementById('closeMenu');
@@ -1488,7 +1441,6 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
     if (e.key === 'Escape' && panel.classList.contains('open')) closePanel();
   });
 
-  // Reveal (once)
   var els = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function(entries){
@@ -1504,7 +1456,6 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
     els.forEach(function(el){ el.classList.add('in'); });
   }
 
-  // Scroll progress + back-to-top — rAF batched
   var progress = document.getElementById('progress');
   var topBtn = document.getElementById('top');
   var ticking = false;
@@ -1514,10 +1465,8 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
     var h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     var pct = h > 0 ? (y / h) * 100 : 0;
     progress.style.width = pct + '%';
-
     if (y > 500) topBtn.classList.add('show');
     else topBtn.classList.remove('show');
-
     ticking = false;
   }
 
@@ -1532,7 +1481,6 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  // Smooth anchors
   var offset = 74;
   document.querySelectorAll('a[href^="#"]').forEach(function(a){
     a.addEventListener('click', function(e){
