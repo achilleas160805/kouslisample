@@ -11,9 +11,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 
 <style>
-/* ══════════════════════════════════════════════════════════
-   TOKENS
-   ══════════════════════════════════════════════════════════ */
 :root{
   --ink:#0E0E0E;
   --ink-2:#3D3D3D;
@@ -125,21 +122,6 @@ p{ color: var(--ink-2); }
 .btn-ghost{ background: transparent; color: var(--ink); }
 .btn-ghost:hover{ background: var(--ink); color: #fff; }
 .btn-block{ width: 100%; }
-
-.text-link{
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 11.5px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  font-weight: 500;
-  color: var(--ink);
-  padding-bottom: 4px;
-  border-bottom: 1px solid var(--ink);
-  transition: color .22s ease, border-color .22s ease, gap .25s ease;
-}
-.text-link:hover{ color: var(--gray); border-color: var(--gray); gap: 14px; }
 
 /* TOPBAR */
 .topbar{
@@ -383,7 +365,7 @@ nav.main a:hover{ color: var(--ink); }
 .info-val a:hover{ color: var(--gray); }
 .info-sub{ font-size: 12.5px; color: var(--gray); margin-top: 6px; line-height: 1.5; }
 
-/* IMAGE BAND (full-width editorial) */
+/* IMAGE BAND */
 .img-band{
   position: relative;
   overflow: hidden;
@@ -413,7 +395,7 @@ nav.main a:hover{ color: var(--ink); }
   font-weight: 500;
 }
 
-/* supporting figure inside About */
+/* supporting figure */
 .about-fig{
   margin-top: 64px;
   border-top: 1px solid var(--line);
@@ -508,9 +490,7 @@ nav.main a:hover{ color: var(--ink); }
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
-
 .svc-cats{ display: flex; flex-direction: column; }
-
 .svc-cat{
   display: grid;
   grid-template-columns: 1fr;
@@ -527,12 +507,7 @@ nav.main a:hover{ color: var(--ink); }
     padding: 40px 0 44px;
   }
 }
-
-.svc-cat-head{
-  display: flex;
-  gap: 18px;
-  align-items: baseline;
-}
+.svc-cat-head{ display: flex; gap: 18px; align-items: baseline; }
 .svc-cat-n{
   font-size: 10.5px;
   letter-spacing: .14em;
@@ -549,7 +524,6 @@ nav.main a:hover{ color: var(--ink); }
   line-height: 1.35;
   font-family: var(--sans);
 }
-
 .svc-cat-items{
   list-style: none;
   display: grid;
@@ -559,9 +533,7 @@ nav.main a:hover{ color: var(--ink); }
   margin: 0;
 }
 @media (min-width: 1000px){
-  .svc-cat-items{
-    grid-template-columns: 1fr 1fr;
-  }
+  .svc-cat-items{ grid-template-columns: 1fr 1fr; }
 }
 .svc-cat-items li{
   font-size: 14px;
@@ -1060,12 +1032,12 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
 
     <figure class="about-fig reveal">
       <div class="frame">
-        <img src="https://images.unsplash.com/photo-1666214280557-f1b5022eb634?auto=format&amp;fit=crop&amp;w=1800&amp;q=85"
-             alt="Ιατρική εξέταση ασθενούς σε σύγχρονο ιατρείο" loading="lazy" decoding="async">
+        <img src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?auto=format&fit=crop&w=1800&q=85"
+             alt="Ακτινογραφία θώρακος — διαγνωστική απεικόνιση" loading="lazy" decoding="async">
       </div>
       <figcaption>
-        <span>Ιδιωτικό Ιατρείο · Κάτω Τούμπα Θεσσαλονίκης</span>
-        <span>Πρωτοβάθμια Φροντίδα</span>
+        <span>Διαγνωστική Απεικόνιση</span>
+        <span>Κλινική Πρακτική</span>
       </figcaption>
     </figure>
   </div>
@@ -1165,7 +1137,7 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
           <li>Holter ρυθμού</li>
           <li>Ανάγνωση &amp; αξιολόγηση δερμοαντίδρασης Mantoux</li>
           <li>Έλεγχος βιταμινών, ηλεκτρολυτών &amp; θυρεοειδούς</li>
-          <li>Έλεγχος φεριτίνης</li>
+          <li>Έλεγχος φερριτίνης</li>
           <li>Τεστ αντιγόνου COVID-19 (rapid test)</li>
         </ul>
       </article>
@@ -1185,11 +1157,11 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
   </div>
 </section>
 
-<!-- ══════════ EDITORIAL IMAGE BAND ══════════ -->
+<!-- ══════════ EDITORIAL IMAGE BAND — Χάπια ══════════ -->
 <figure class="img-band reveal">
-  <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&amp;fit=crop&amp;w=2000&amp;q=85"
-       alt="Σύγχρονος χώρος ιατρείου" loading="lazy" decoding="async">
-  <figcaption class="cap">Πρωτοβάθμια Φροντίδα · Θεσσαλονίκη</figcaption>
+  <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=2000&q=85"
+       alt="Φαρμακευτική αγωγή — χάπια και κάψουλες" loading="lazy" decoding="async">
+  <figcaption class="cap">Φαρμακευτική Αγωγή · Συνταγογράφηση</figcaption>
 </figure>
 
 <section id="studies" class="cv">
@@ -1381,11 +1353,11 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
   </div>
 </section>
 
-<!-- ══════════ EDITORIAL IMAGE BAND ══════════ -->
+<!-- ══════════ EDITORIAL IMAGE BAND — Καρδιογράφημα ══════════ -->
 <figure class="img-band reveal">
-  <img src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?auto=format&amp;fit=crop&amp;w=2000&amp;q=85"
-       alt="Ιατρικός εξοπλισμός — σύγχρονη κλινική πρακτική" loading="lazy" decoding="async">
-  <figcaption class="cap">Κλινική Πρακτική · Σύγχρονη Ιατρική</figcaption>
+  <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=2000&q=85"
+       alt="Ηλεκτροκαρδιογράφημα — καρδιολογικός έλεγχος" loading="lazy" decoding="async">
+  <figcaption class="cap">Καρδιολογικός Έλεγχος · Διαγνωστικές Εξετάσεις</figcaption>
 </figure>
 
 <section id="reviews" class="reviews cv">
@@ -1436,6 +1408,13 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
   </div>
 </section>
 
+<!-- ══════════ EDITORIAL IMAGE BAND — Γύψος ══════════ -->
+<figure class="img-band reveal">
+  <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=2000&q=85"
+       alt="Γυψωμένο χέρι — περιποίηση τραυμάτων και επείγουσα φροντίδα" loading="lazy" decoding="async">
+  <figcaption class="cap">Επείγουσα Φροντίδα · Περιποίηση Τραυμάτων</figcaption>
+</figure>
+
 <section id="contact" class="cv">
   <div class="wrap">
     <header class="sec-head reveal">
@@ -1476,7 +1455,7 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
         <div class="map-wrap">
           <iframe
             title="Χάρτης Ιατρείου — Διογένους 23, Κάτω Τούμπα"
-            src="https://www.google.com/maps?q=%CE%94%CE%B9%CE%BF%CE%B3%CE%AD%CE%BD%CE%BF%CF%85%CF%82+23,+%CE%9A%CE%AC%CF%84%CF%89+%CE%A4%CE%BF%CF%8D%CE%BC%CF%80%CE%B1,+%CE%98%CE%B5%CF%83%CF%83%CE%B1%CE%BB%CE%BF%CE%BD%CE%AF%CE%BA%CE%B7+544+53&amp;z=17&amp;hl=el&amp;output=embed"
+            src="https://www.google.com/maps?q=Διογένους+23,+Κάτω+Τούμπα,+Θεσσαλονίκη+544+53&output=embed&z=17&hl=el"
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
             allowfullscreen></iframe>
