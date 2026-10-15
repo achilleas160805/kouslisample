@@ -372,20 +372,10 @@ nav.main a:hover{ color: var(--ink); }
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   background: var(--bg-alt);
-  padding: 60px var(--pad);
+  padding: 48px var(--pad);
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 280px;
-}
-.svg-band .cap{
-  margin-top: 24px;
-  font-size: 11px;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-  font-weight: 500;
 }
 
 .about-fig{
@@ -402,25 +392,8 @@ nav.main a:hover{ color: var(--ink); }
   align-items: center;
   border: 1px solid var(--line);
 }
-.about-fig figcaption{
-  margin-top: 14px;
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 16px;
-  flex-wrap: wrap;
-  font-size: 10.5px;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-  color: var(--gray);
-  font-weight: 500;
-}
 
 /* SVG ANIMATIONS */
-@keyframes svgPulse {
-  0%, 100% { opacity: 0.85; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.03); }
-}
 @keyframes svgFloat {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-6px); }
@@ -428,12 +401,7 @@ nav.main a:hover{ color: var(--ink); }
 @keyframes ecgDash {
   to { stroke-dashoffset: 0; }
 }
-@keyframes rotateLight {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
 
-.anim-pulse { animation: svgPulse 4s ease-in-out infinite; }
 .anim-float { animation: svgFloat 5s ease-in-out infinite; }
 
 .anim-ecg {
@@ -1046,26 +1014,24 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
       </div>
     </div>
 
-    <!-- 1. SVG: ΑΚΤΙΝΟΓΡΑΦΙΑ -->
-    <figure class="about-fig reveal">
+    <!-- 1. SVG: ΔΕΜΕΝΟ ΧΕΡΙ ΣΕ ΓΥΨΟ -->
+    <div class="about-fig reveal">
       <div class="frame-svg">
-        <svg width="220" height="120" viewBox="0 0 220 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="anim-pulse" aria-hidden="true">
-          <!-- Film / Screen Frame -->
-          <rect x="2" y="2" width="216" height="116" rx="8" stroke="#122A3F" stroke-width="1.5" fill="#FFFFFF"/>
-          <rect x="12" y="12" width="196" height="96" rx="4" fill="#122A3F" fill-opacity="0.04" stroke="#737373" stroke-dasharray="4 4" stroke-width="1"/>
-          <!-- Rib cage & Spine concept -->
-          <path d="M110 20V100" stroke="#122A3F" stroke-width="2" stroke-linecap="round"/>
-          <path d="M110 32C90 32 70 38 65 48M110 32C130 32 150 38 155 48" stroke="#122A3F" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M110 48C85 48 65 56 60 68M110 48C135 48 155 56 160 68" stroke="#122A3F" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M110 64C88 64 70 72 68 84M110 64C132 64 150 72 152 84" stroke="#122A3F" stroke-width="1.5" stroke-linecap="round"/>
-          <circle cx="180" cy="28" r="6" fill="#122A3F" fill-opacity="0.12"/>
+        <svg width="200" height="90" viewBox="0 0 200 90" fill="none" xmlns="http://www.w3.org/2000/svg" class="anim-float" aria-hidden="true">
+          <!-- Forearm and hand contour -->
+          <path d="M15 50C35 50 60 38 85 38C110 38 135 46 175 46" stroke="#122A3F" stroke-width="2" stroke-linecap="round"/>
+          <path d="M175 46C185 46 190 40 186 32C182 24 172 26 162 28" stroke="#122A3F" stroke-width="1.5" stroke-linecap="round"/>
+          <!-- Cast / Bandage area -->
+          <rect x="50" y="24" width="70" height="30" rx="6" transform="rotate(-4 50 24)" stroke="#122A3F" stroke-width="1.5" fill="#FFFFFF"/>
+          <!-- Bandage wrap details -->
+          <line x1="65" y1="23" x2="73" y2="52" stroke="#122A3F" stroke-width="1.2" stroke-dasharray="2 2"/>
+          <line x1="83" y1="22" x2="91" y2="51" stroke="#122A3F" stroke-width="1.2" stroke-dasharray="2 2"/>
+          <line x1="101" y1="21" x2="109" y2="50" stroke="#122A3F" stroke-width="1.2" stroke-dasharray="2 2"/>
+          <!-- Medical Cross Accent -->
+          <path d="M142 16V26M137 21H147" stroke="#122A3F" stroke-width="1.5" stroke-linecap="round"/>
         </svg>
       </div>
-      <figcaption>
-        <span>Διαγνωστική Απεικόνιση</span>
-        <span>Κλινική Πρακτική</span>
-      </figcaption>
-    </figure>
+    </div>
   </div>
 </section>
 
@@ -1202,7 +1168,6 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
     <circle cx="145" cy="58" r="14" stroke="#122A3F" stroke-width="1.5" fill="#FFFFFF"/>
     <line x1="135" y1="58" x2="155" y2="58" stroke="#122A3F" stroke-width="1.2"/>
   </svg>
-  <div class="cap">Φαρμακευτική Αγωγή · Συνταγογράφηση</div>
 </div>
 
 <section id="studies" class="cv">
@@ -1282,7 +1247,7 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
         <span class="cv-n">2017–2018</span>
         <div>
           <div class="cv-t">Υπηρεσίες Ιατρού</div>
-          <div class="cv-s">Ελληνικός Сτρατός</div>
+          <div class="cv-s">Ελληνικός Στρατός</div>
         </div>
       </div>
       <div class="cv-item wide reveal">
@@ -1394,7 +1359,7 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
   </div>
 </section>
 
-<!-- 3. SVG: ΚΑΡΔΙΟΓΡΑΦΗΜΑ & ΣΤΗΘΟΣΚΟΠΙΟ -->
+<!-- 3. SVG: ΚΑΡΔΙΟΓΡΑΦΗΜΑ -->
 <div class="svg-band reveal">
   <svg width="240" height="80" viewBox="0 0 240 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <!-- Heart & Pulse background -->
@@ -1402,7 +1367,6 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
     <!-- ECG Wave Path -->
     <path class="anim-ecg" d="M10 40H60L68 25L76 55L88 10L98 68L108 32L116 45L124 40H230" stroke="#122A3F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>
-  <div class="cap">Καρδιολογικός Έλεγχος · Διαγνωστικές Εξετάσεις</div>
 </div>
 
 <section id="reviews" class="reviews cv">
@@ -1411,7 +1375,7 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
       <div class="label"><strong>07</strong> Αξιολογήσεις</div>
       <div>
         <h2>Εμπειρίες Ασθενών</h2>
-        <p class="desc">Ενδειτικά σχόλια ασθενών από ανεξάρτητες πλατφόρμες αξιολόγησης.</p>
+        <p class="desc">Ενδεικτικά σχόλια ασθενών από ανεξάρτητες πλατφόρμες αξιολόγησης.</p>
       </div>
     </header>
 
@@ -1466,7 +1430,6 @@ a:focus-visible, button:focus-visible{ outline: 1px solid var(--ink); outline-of
     <!-- Red Cross Symbol Accent -->
     <path d="M135 20V32M129 26H141" stroke="#122A3F" stroke-width="1.8" stroke-linecap="round"/>
   </svg>
-  <div class="cap">Επείγουσα Φροντίδα · Περιποίηση Τραυμάτων</div>
 </div>
 
 <section id="contact" class="cv">
